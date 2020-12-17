@@ -7,6 +7,10 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 
+using Igry.ViewModels;
+using Igry.Views;
+using Igry.Services;
+
 namespace Igry
 {
     public partial class App : PrismApplication
@@ -17,12 +21,15 @@ namespace Igry
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync("MainPage");
+            await NavigationService.NavigateAsync("GameDetailPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();
+            containerRegistry.RegisterForNavigation<GameDetailPage, GameDetailViewModel>();
         }
 
         protected override void OnStart()
