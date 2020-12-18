@@ -3,39 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.Views.GameDetailPage">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="20, 0, 20, 0">
-            <Label Text="{Binding CurrentGame.Name}" />
-            <Image Source="{Binding CurrentGame.BackgroundImage}"/>
-            <Label Text="{Binding CurrentGameGenres}"/>
+        <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *, 3*"
+               Margin="20, 0, 20, 0">
+            <Label Text="{Binding CurrentGame.Name}"  Margin="0, 20, 0, 0" Grid.Row="0" Grid.Column="1"/>
+            <Image Source="{Binding CurrentGame.BackgroundImage}"  Margin="0, 20, 0, 0" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFill"/>
+
+            <StackLayout  Grid.Row="1" Grid.Column="1">
+                <Label Text="{Binding CurrentGameGenres}"/>
             
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Release Date: "/>
-                        <Span Text="{Binding CurrentGame.Released}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Release Date: "/>
+                            <Span Text="{Binding CurrentGame.Released}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
 
-            <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Rating: "/>
-                    <Span Text="{Binding CurrentGame.Rating}" />
-                </FormattedString>
-            </Label.FormattedText>
-            </Label>
 
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Available in the following platforms: "/>
-                        <Span Text="{Binding CurrentGamePlatforms}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <StackLayout Grid.Row="2" Grid.Column="1">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Rating: "/>
+                            <Span Text="{Binding CurrentGame.Rating}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-            <Button Text="Get a random action game details" Command="{Binding GetRandomGameCommand}"/>
-        </StackLayout>
+                <Label >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Available in the following platforms: "/>
+                            <Span Text="{Binding CurrentGamePlatforms}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+            <Button Text="Get a random action game details" Command="{Binding GetRandomGameCommand}"
+                    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Start"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
