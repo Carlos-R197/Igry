@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Igry.Views
 {
-    class SettingsViewModel
+    class ProfileViewModel
     {
     }
 }

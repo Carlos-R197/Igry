@@ -8,16 +8,25 @@ using Prism.Commands;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Prism.Navigation.Xaml;
+using Prism.Navigation;
 
 namespace Igry.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        
         public ICommand LogInCommand => new Command(LogIn);
+        public INavigationService _navigationService;
 
-        private void LogIn()
+        public LoginViewModel(INavigationService navigationService)
         {
-            
+
+            _navigationService = navigationService;
+        }
+
+        private async void LogIn()
+        {
+            await _navigationService.NavigateAsync("HomeTabbedPage");
         }
     }
 }

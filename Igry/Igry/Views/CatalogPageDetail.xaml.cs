@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Igry.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class CatalogPageDetail : ContentPage
     {
-        public HomePage()
+        public CatalogPageDetail()
         {
             InitializeComponent();
         }
