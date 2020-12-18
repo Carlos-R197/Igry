@@ -4,8 +4,9 @@
              x:Class="Igry.Views.SettingsPage"
              Title="More">
     <ContentPage.Content>
-        <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, *, *">
-            <Button Text="GameDetailDebug"  Grid.Column="3" Command="{Binding GameDetailCommand}"/>
+        <Grid RowDefinitions="*, *, *" ColumnDefinitions=", *, *">
+            <Button Text="GameDetail Debug"  Grid.Column="2" Command="{Binding GameDetailCommand}"/>
+            <Button Text="RndPlatform Debug" Grid.Row="1" Grid.Column="2" Command="{Binding RandomPlatformCommand}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

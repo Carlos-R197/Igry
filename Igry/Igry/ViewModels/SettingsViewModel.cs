@@ -12,6 +12,7 @@ namespace Igry.Views
     {
         public ICommand GameDetailCommand => new Command(GameDetail);
         public INavigationService _navigationService;
+        public ICommand RandomPlatformCommand => new Command(RandomPlatform);
 
         public SettingsViewModel(INavigationService navigationService)
         {
@@ -22,6 +23,10 @@ namespace Igry.Views
         private async void GameDetail()
         {
             await _navigationService.NavigateAsync("GameDetailPage");
+        }
+        private async void RandomPlatform()
+        {
+            await _navigationService.NavigateAsync("RandomPlatformPage");
         }
     }
 }

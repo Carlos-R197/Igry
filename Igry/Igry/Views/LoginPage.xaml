@@ -4,7 +4,7 @@
              x:Class="Igry.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <Label Text="Welcome to the login page" />
+            <Label Text="Welcome to the login page"/>
             <Button Text="Login" TextColor="Black" BackgroundColor="Gray" Command="{Binding LogInCommand}"/>
         </StackLayout>
     </ContentPage.Content>
