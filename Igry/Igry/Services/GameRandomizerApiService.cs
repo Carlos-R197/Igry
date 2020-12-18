@@ -32,25 +32,6 @@ namespace Igry.Services
                 game = gamesList.Games[index];
             }
 
-            /*
-            else
-            {
-                gamesList = null;
-                int amountPages = gamesList.Count / resultsPerPage;
-                int randomPage = rnd.Next(1, maxPages + 1);
-
-                string query = $"https://api.rawg.io/api/games?genres=4&key=9b88a4289b784c19b41aff2c40764c6a&page={randomPage}&page_size={resultsPerPage}";
-                var response = await client.GetAsync(query);
-                if (response.IsSuccessStatusCode)
-                {
-                    gamesList = JsonConvert.DeserializeObject<GamesList>(await response.Content.ReadAsStringAsync());
-
-                    int index = rnd.Next(0, resultsPerPage);
-                    game = gamesList.Games[index];
-                }
-            }
-            */
-
             return game;
         }
     }
