@@ -30,6 +30,9 @@ namespace Igry
             containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();
             containerRegistry.RegisterForNavigation<GameDetailPage, GameDetailViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>();
+            containerRegistry.RegisterForNavigation<CatalogPage, CatalogViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage>();
         }
 
         protected override void OnStart()
