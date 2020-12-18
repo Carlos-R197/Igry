@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Igry.Views.RandomPlatformPage" BackgroundColor="White"
+             Title="Random Platform">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Label Text="{Binding Platform.Name}" TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Button Text="GetRandomPlatform" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Command="{Binding GetRandomPlatformCommand}"/>
+            <Label Text="Powered by Rawg.io" TextColor="Red" TextDecorations="Underline" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                      CommandParameter="https://rawg.io/" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

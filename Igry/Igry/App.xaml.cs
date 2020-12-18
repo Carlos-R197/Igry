@@ -21,15 +21,24 @@ namespace Igry
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync("GameDetailPage");
+            await NavigationService.NavigateAsync("LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
+            containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();
+
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();
             containerRegistry.RegisterForNavigation<GameDetailPage, GameDetailViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>();
+            containerRegistry.RegisterForNavigation<CatalogPage, CatalogViewModel>();
+            containerRegistry.RegisterForNavigation<ProfilePage, ProfileViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage, HomeViewModel>();
+            containerRegistry.RegisterForNavigation<RandomPlatformPage, RandomPlatformViewModel>();
+            containerRegistry.RegisterForNavigation<HomeTabbedPage>("HomeTabbedPage");
         }
 
         protected override void OnStart()
