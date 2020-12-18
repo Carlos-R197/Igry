@@ -34,22 +34,5 @@ namespace Igry.Services
 
             return game;
         }
-        public async Task<PlatformData> GetRandomPlatformAsync()
-        {
-            PlatformData platform = null;
-            var client = new HttpClient();
-            var rnd = new Random();
-
-            var response = await client.GetAsync("https://api.rawg.io/api/platforms?key=7b8dd461e6ef42df8e64b4964852ce00");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var platformList = JsonConvert.DeserializeObject<PlatformList>(await response.Content.ReadAsStringAsync());
-
-                int rand = rnd.Next(0, platformList.Count);
-                platform = platformList.Results[rand];
-            }
-            return platform;
-        }
     }
 }

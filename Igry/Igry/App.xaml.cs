@@ -27,6 +27,8 @@ namespace Igry
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
+            containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();

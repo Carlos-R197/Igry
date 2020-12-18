@@ -9,6 +9,5 @@ namespace Igry.Services
     public interface IGameRandomizerApiService
     {
         Task<Game> GetRandomAsync();
-        Task<PlatformData> GetRandomPlatformAsync();
     }
 }

@@ -17,17 +17,17 @@ namespace Igry.ViewModels
         
         public DelegateCommand LogInCommand { get; set; }
 
-        INavigationService _navigationService;
+        INavigationService navigationService;
 
         public LoginViewModel(INavigationService navigationService)
         {
             LogInCommand = new DelegateCommand(LogIn);
-            _navigationService = navigationService;
+            this.navigationService = navigationService;
         }
 
         private async void LogIn()
         {
-            await _navigationService.NavigateAsync("/NavigationPage/HomeTabbedPage");
+            await navigationService.NavigateAsync("/NavigationPage/HomeTabbedPage");
         }
     }
 }

@@ -11,22 +11,21 @@ namespace Igry.Views
     class SettingsViewModel : BaseViewModel
     {
         public ICommand GameDetailCommand => new Command(GameDetail);
-        public INavigationService _navigationService;
+        public INavigationService navigationService;
         public ICommand RandomPlatformCommand => new Command(RandomPlatform);
 
         public SettingsViewModel(INavigationService navigationService)
         {
-
-            _navigationService = navigationService;
+            this.navigationService = navigationService;
         }
 
         private async void GameDetail()
         {
-            await _navigationService.NavigateAsync("NavigationPage/GameDetailPage");
+            await navigationService.NavigateAsync("NavigationPage/GameDetailPage");
         }
         private async void RandomPlatform()
         {
-            await _navigationService.NavigateAsync("NavigationPage/RandomPlatformPage");
+            await navigationService.NavigateAsync("NavigationPage/RandomPlatformPage");
         }
     }
 }
