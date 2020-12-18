@@ -22,11 +22,11 @@ namespace Igry.Views
 
         private async void GameDetail()
         {
-            await _navigationService.NavigateAsync("GameDetailPage");
+            await _navigationService.NavigateAsync("NavigationPage/GameDetailPage");
         }
         private async void RandomPlatform()
         {
-            await _navigationService.NavigateAsync("RandomPlatformPage");
+            await _navigationService.NavigateAsync("NavigationPage/RandomPlatformPage");
         }
     }
 }

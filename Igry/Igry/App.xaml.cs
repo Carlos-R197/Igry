@@ -27,6 +27,7 @@ namespace Igry
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterViewModel>();
             containerRegistry.RegisterForNavigation<GameDetailPage, GameDetailViewModel>();
@@ -35,7 +36,7 @@ namespace Igry
             containerRegistry.RegisterForNavigation<ProfilePage, ProfileViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomeViewModel>();
             containerRegistry.RegisterForNavigation<RandomPlatformPage, RandomPlatformViewModel>();
-            containerRegistry.RegisterForNavigation<HomeTabbedPage>();
+            containerRegistry.RegisterForNavigation<HomeTabbedPage>("HomeTabbedPage");
         }
 
         protected override void OnStart()
