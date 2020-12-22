@@ -10,6 +10,8 @@ using Prism.Unity;
 using Igry.ViewModels;
 using Igry.Views;
 using Igry.Services;
+using Igry.Objects;
+using System.IO;
 
 namespace Igry
 {
@@ -21,11 +23,14 @@ namespace Igry
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync("LoginPage");
+            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            var database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "myDB.db3"));
+            containerRegistry.RegisterInstance(database);
+
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
             containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();
 
@@ -38,7 +43,7 @@ namespace Igry
             containerRegistry.RegisterForNavigation<ProfilePage, ProfileViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomeViewModel>();
             containerRegistry.RegisterForNavigation<RandomPlatformPage, RandomPlatformViewModel>();
-            containerRegistry.RegisterForNavigation<HomeTabbedPage>("HomeTabbedPage");
+            containerRegistry.RegisterForNavigation<HomeTabbedPage>();
         }
 
         protected override void OnStart()

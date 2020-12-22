@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Igry.Views.RegisterPage">
+             x:Class="Igry.Views.RegisterPage"
+             Title="Register">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to the register page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="User information" HorizontalOptions="Center"/>
+            <Entry Placeholder="Email" Text="{Binding Email.Value}" Margin="20, 0, 20, 0"/>
+            <Entry Placeholder="Name" Text="{Binding Name}" Margin="20, 0, 20, 0" />
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" Margin="20, 0, 20, 0"/>
+            <Entry Placeholder="Confirm password" IsPassword="True" Text="{Binding ConfirmPassword}" Margin="20, 0, 20, 0"/>
+            <Button Text="Register" TextColor="Black" BackgroundColor="Gray" Command="{Binding RegisterCommand}" Margin="20, 0, 20, 0"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

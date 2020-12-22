@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-using Prism.Navigation;
-using Prism.Services;
 
-namespace Igry.ViewModels
+namespace Igry.Objects
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
     }
