@@ -3,16 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.Views.LoginPage"
              xmlns:prism="http://prismlibrary.com" 
-             Title="Login">
+             BackgroundColor="#039be5">
 
-    <ContentPage.Content>
+    
+    <ContentPage.Content >
         
-        <StackLayout  VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="20, 20, 20, 20">
-            <Label Text="Igry" HorizontalOptions="Center"/>
-            <Entry Placeholder="Email" Text="{Binding Email.Value}" Margin="20, 0, 20, 0"/>
-            <Entry Placeholder="Password" Text="{Binding Password.Value}" Margin="20, 0, 20, 0"/>
-            <Button Text="Login" TextColor="Black" BackgroundColor="Gray" Command="{Binding LogInCommand}"/>
-            <Button Text="Register" TextColor="Black" BackgroundColor="Gray" Command="{prism:NavigateTo 'RegisterPage'}"/>
+        <StackLayout  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="20, 20, 20, 20">
+            <Label Text="IGRY" FontSize="Large" HorizontalOptions="Start" VerticalOptions="Start" Margin="0, 0, 0, 80"/>
+            <Label Text="Login" FontSize="Large" HorizontalOptions="Center" Margin="0, 0, 0, 50"/>
+            <Entry Placeholder="Email" Keyboard="Email" Text="{Binding Email.Value}" Margin="20, 0, 20, 0"/>
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" Margin="20, 0, 20, 0"/>
+            <Button Text="Login" TextColor="Black" BackgroundColor="Gray" Command="{Binding LogInCommand}" 
+                    Margin="0, 20, 0, 20" HorizontalOptions="Center" WidthRequest="100" HeightRequest="40"/>
+            <Button Text="Sign Up" TextColor="Black" BackgroundColor="Gray" Command="{prism:NavigateTo 'RegisterPage'}"
+                    HorizontalOptions="Center" WidthRequest="120" HeightRequest="40"/>
         </StackLayout>
         
     </ContentPage.Content>

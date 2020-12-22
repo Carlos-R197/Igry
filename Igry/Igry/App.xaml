@@ -3,6 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.App"
              xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+            <!-- Colors-->
+            <Color x:Key="PrimaryColor">#039be5</Color>
+            <Color x:Key="LightPrimaryColor">#63ccff</Color>
+            <Color x:Key="DarkPrimaryColor">#006db3</Color>
 
+            <Color x:Key="SecondaryColor">#a86510</Color>
+            <Color x:Key="LightSecondaryColor">#de9341</Color>
+            <Color x:Key="DarkSecondaryColor">#743a00</Color>
+
+            <Color x:Key="TextColor">#000000</Color>
+            <!--Implicit Styles -->
+            <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource DarkPrimaryColor}"/>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextColor}"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="IsTextPredictionEnabled" Value="False"/>
+            </Style>
+            <!-- Explicit Styles -->
+            
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
     
 </prism:PrismApplication>

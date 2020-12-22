@@ -30,5 +30,14 @@ namespace Igry.Objects
         {
             return database.InsertAsync(user);
         }
+
+        public async Task<bool> IsEmailTaken(string email)
+        {
+            var user = await database.Table<User>().FirstOrDefaultAsync(t => t.Email == email);
+            if (user != null)
+                return true;
+            else
+                return false;
+        }
     }
 }

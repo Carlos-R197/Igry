@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
             <Label Text="User information" HorizontalOptions="Center"/>
-            <Entry Placeholder="Email" Text="{Binding Email.Value}" Margin="20, 0, 20, 0"/>
+            <Entry Placeholder="Email" Keyboard="Email" Text="{Binding Email.Value}" Margin="20, 0, 20, 0"/>
             <Entry Placeholder="Name" Text="{Binding Name}" Margin="20, 0, 20, 0" />
             <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" Margin="20, 0, 20, 0"/>
             <Entry Placeholder="Confirm password" IsPassword="True" Text="{Binding ConfirmPassword}" Margin="20, 0, 20, 0"/>
