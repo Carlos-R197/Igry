@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Newtonsoft.Json;
+using Igry.Objects;
 
 namespace Igry.Models
 {
-    public class Game 
+    public class Game : BaseObject
     {
 
         [JsonProperty("id")]
@@ -96,6 +97,5 @@ namespace Igry.Models
         [JsonProperty("short_screenshots")]
         public IList<ShortScreenshot> ShortScreenshots { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

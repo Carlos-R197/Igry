@@ -33,6 +33,7 @@ namespace Igry
 
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
             containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();
+            containerRegistry.Register<GetGameApiService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();

@@ -42,7 +42,7 @@ namespace Igry.ViewModels
                 {
                     var user = new User(Email.Value, Name, Password.Value);
                     var savingUser = database.SaveUserAsync(user);
-                    await dialogService.DisplayAlertAsync("Registration successful", "Your account has been created successfully", "OK");\
+                    await dialogService.DisplayAlertAsync("Registration successful", "Your account has been created successfully", "OK");
                     await savingUser;
                     await navigationService.GoBackAsync();
                 }
