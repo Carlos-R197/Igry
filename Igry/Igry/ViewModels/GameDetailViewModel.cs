@@ -22,6 +22,12 @@ namespace Igry.ViewModels
             this.apiService = apiService;
             GetRandomGameCommand = new DelegateCommand(GetRandomGame);
         }
+        //public GameDetailViewModel(IGameRandomizerApiService apiService, INavigationParameters parameters)
+        //{
+        //    this.apiService = apiService;
+        //    GetRandomGameCommand = new DelegateCommand(GetRandomGame);
+        //    OnNavigated
+        //}
 
 
         async void GetRandomGame()
@@ -56,13 +62,12 @@ namespace Igry.ViewModels
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            
-        }
+        {}
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            
+            var game = parameters.GetValue<Game>("Game");
+            CurrentGame = game;
         }
     }
 }

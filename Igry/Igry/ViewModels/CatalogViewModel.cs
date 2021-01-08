@@ -1,6 +1,7 @@
 ﻿using Igry.Models;
 using Igry.Services;
 using Prism.Commands;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,11 +15,21 @@ namespace Igry.ViewModels
         IGameCatalogApiService apiService = new GameCatalogApiService();
         public DelegateCommand PreviousPageCommand => new DelegateCommand(PreviousPage);
         public DelegateCommand NextPageCommand => new DelegateCommand(NextPage);
+        public DelegateCommand GameDetailPageCommand => new DelegateCommand(GameDetail);
+        private readonly INavigationService navigationService;
         public IList<Game> GameLists { get; set; }
+        public Game SelectedGame { get; set; }
+
         public async void LoadCatalog(int page)
         {
             var gameList = await apiService.GetPageAsync(page);
             GameLists = gameList;
+        }
+        public async void GameDetail()
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("Game", SelectedGame);
+            await navigationService.NavigateAsync("GameDetailPage", navigationParams);
         }
         public void PreviousPage()
         {
@@ -33,9 +44,10 @@ namespace Igry.ViewModels
             Page++;
             LoadCatalog(Page);
         }
-        public CatalogViewModel()
+        public CatalogViewModel(INavigationService navigationService)
         {
             LoadCatalog(Page);
+            this.navigationService = navigationService;
         }
     }
 }
