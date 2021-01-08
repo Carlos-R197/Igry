@@ -2,8 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.Views.CatalogPageDetail"
-             Title="Detail">
-  <StackLayout Padding="10">
-    <Label Text="Catalog Page"/>
-  </StackLayout>
+             Title="Catalog" BackgroundColor="Black">
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="20*,*" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+        <CollectionView x:Name="catalog" ItemsSource="{Binding GameLists}" SelectionMode="Single" Grid.Row="0" Grid.ColumnSpan="4" SelectedItem="{Binding SelectedGame}" SelectionChangedCommand="{Binding GameDetailPageCommand}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="20" Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="*,*" BackgroundColor="Black" Padding="10">
+                        <Image Aspect="AspectFill" Source="{Binding BackgroundImage}" Margin="10" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="{Binding Name}" TextColor="White" Grid.Row="1"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label Text="Previous" TextColor="White" FontAttributes="Bold" TextDecorations="Underline" Grid.Row="2" HorizontalTextAlignment="End">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding PreviousPageCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+        <Label Text="{Binding Page}" TextColor="White" FontAttributes="Bold" TextDecorations="Underline" Grid.Row="2" Grid.Column="2"/>
+        <Label Text="Next" TextColor="White" FontAttributes="Bold" TextDecorations="Underline" Grid.Row="2" Grid.Column="3">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NextPageCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid>
 </ContentPage>

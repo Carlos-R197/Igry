@@ -45,6 +45,8 @@
 
             <Button Text="Get a random action game details" Command="{Binding GetRandomGameCommand}"
                     Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Start"/>
+            
+            <ImageButton Source="{Binding FavoriteImagePath}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

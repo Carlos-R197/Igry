@@ -4,10 +4,13 @@
              x:Class="Igry.Views.HomePage"
              Title="Home">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Home Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowDefinitions="3*, 7*" ColumnDefinitions="*" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+            <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Grid.Row="0" Grid.Column="0" 
+                   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
+            <Label Text="Game of the month" Grid.Row="0" Grid.Column="0" 
+                   VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Text="{Binding GameOfTheWeek.Name}" Grid.Row="0" Grid.Column="0"
+                   VerticalOptions="End" HorizontalOptions="Center"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
