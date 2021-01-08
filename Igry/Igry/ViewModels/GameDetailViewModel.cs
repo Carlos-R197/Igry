@@ -12,7 +12,6 @@ namespace Igry.ViewModels
     {
         IGameRandomizerApiService apiService;
 
-        public DelegateCommand GetRandomGameCommand { get; set; }
         public Game CurrentGame { get; set; }
         public string CurrentGameGenres { get; set; }
         public string CurrentGamePlatforms { get; set; }
@@ -20,14 +19,7 @@ namespace Igry.ViewModels
         public GameDetailViewModel(IGameRandomizerApiService apiService)
         {
             this.apiService = apiService;
-            GetRandomGameCommand = new DelegateCommand(GetRandomGame);
         }
-        //public GameDetailViewModel(IGameRandomizerApiService apiService, INavigationParameters parameters)
-        //{
-        //    this.apiService = apiService;
-        //    GetRandomGameCommand = new DelegateCommand(GetRandomGame);
-        //    OnNavigated
-        //}
 
 
         async void GetRandomGame()
