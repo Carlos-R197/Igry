@@ -68,6 +68,8 @@ namespace Igry.ViewModels
         {
             var game = parameters.GetValue<Game>("Game");
             CurrentGame = game;
+            AdjustCurrentGameGenre();
+            AdjustCurrentGamePlatforms();
         }
     }
 }

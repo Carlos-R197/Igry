@@ -5,7 +5,8 @@
             xmlns:local="clr-namespace:Igry.Views"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            Title="Igry" >
+            Title="Igry" 
+            android:TabbedPage.IsSwipePagingEnabled="False">
     <TabbedPage.Children>
         <local:HomePage/>
         <local:CatalogPage/>
