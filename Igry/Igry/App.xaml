@@ -14,21 +14,27 @@
             <Color x:Key="LightSecondaryColor">#de9341</Color>
             <Color x:Key="DarkSecondaryColor">#743a00</Color>
 
-            <Color x:Key="TextColor">#000000</Color>
+            <Color x:Key="TextColor">#006db3</Color>
             <!--Implicit Styles -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource DarkPrimaryColor}"/>
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource TextColor}"/>
+                <Setter Property="TextColor" Value="#FFFFFF"/>
             </Style>
 
             <Style TargetType="Entry">
                 <Setter Property="IsTextPredictionEnabled" Value="False"/>
             </Style>
             <!-- Explicit Styles -->
-            
+            <Style x:Key="WhiteText" TargetType="Label">
+                <Setter Property="TextColor" Value="#FFFFFF"></Setter>
+            </Style>
+
+            <Style x:Key="BlueText" TargetType="Label">
+                <Setter Property="TextColor" Value="#006db3"></Setter>
+            </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
     

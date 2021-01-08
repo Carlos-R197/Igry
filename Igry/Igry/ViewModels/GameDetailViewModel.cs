@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ using Igry.Services;
 
 namespace Igry.ViewModels
 {
-    public class GameDetailViewModel : BaseViewModel
+    public class GameDetailViewModel : BaseViewModel, INavigatedAware
     {
         IGameRandomizerApiService apiService;
 
@@ -52,6 +53,16 @@ namespace Igry.ViewModels
             }
             else
                 CurrentGamePlatforms = "No platform data available for this game";
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            
         }
     }
 }
