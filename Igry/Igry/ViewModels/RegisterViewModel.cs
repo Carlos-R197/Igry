@@ -5,7 +5,6 @@ using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using Igry.Models;
-using Igry.Objects;
 using System.Threading.Tasks;
 
 namespace Igry.ViewModels

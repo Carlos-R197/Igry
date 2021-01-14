@@ -21,7 +21,7 @@
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="#FFFFFF"/>
+                <Setter Property="TextColor" Value="#000000"/>
             </Style>
 
             <Style TargetType="Entry">
