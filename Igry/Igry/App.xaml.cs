@@ -14,6 +14,7 @@ using Igry.Objects;
 using System.IO;
 
 using Igry.Models;
+using System.Collections.ObjectModel;
 
 namespace Igry
 {
@@ -33,11 +34,12 @@ namespace Igry
             var database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "myDB.db3"));
             containerRegistry.RegisterInstance(database);
             containerRegistry.RegisterInstance(new User());
+            containerRegistry.RegisterInstance(new ObservableCollection<Game>());
 
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
             containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();
             containerRegistry.Register<GameOfTheMonthApiService>();
-            containerRegistry.Register<GamesByNameApiService>();
+            containerRegistry.Register<GamesByIdApiService>();
             containerRegistry.Register<RecommendedGamesApiService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();

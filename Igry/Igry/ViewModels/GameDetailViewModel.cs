@@ -7,15 +7,18 @@ using System.Linq;
 using Igry.Models;
 using Igry.Services;
 using Igry.Objects;
+using System.Collections.ObjectModel;
 
 namespace Igry.ViewModels
 {
     public class GameDetailViewModel : BaseViewModel, INavigatedAware
     {
         private readonly IGameRandomizerApiService apiService;
+        private readonly GamesByIdApiService gamesByIdApiService;
         private readonly DelegateCommand favoriteCommand;
         private readonly Database database;
         private readonly User currentUser;
+        private readonly ObservableCollection<Game> favoriteGames;
 
         public Game CurrentGame { get; set; }
         public string CurrentGameGenres { get; set; }
@@ -25,12 +28,15 @@ namespace Igry.ViewModels
 
         public DelegateCommand FavoriteCommand => favoriteCommand;
 
-        public GameDetailViewModel(IGameRandomizerApiService apiService, Database db, User user)
+        public GameDetailViewModel(IGameRandomizerApiService apiService, GamesByIdApiService gamesByIdApiService, 
+            Database db, User user, ObservableCollection<Game> favoriteGames)
         {
             this.apiService = apiService;
+            this.gamesByIdApiService = gamesByIdApiService;
             favoriteCommand = new DelegateCommand(ManageGameFavoriteStatus);
             database = db;
             currentUser = user;
+            this.favoriteGames = favoriteGames;
         }
 
         private async void ManageGameFavoriteStatus()
@@ -39,6 +45,7 @@ namespace Igry.ViewModels
             if (favorite != null)
             {
                 currentUser.Favorites.Remove(favorite);
+                favoriteGames.Remove(favoriteGames.First(t => t.Id == favorite.GameId));
                 await database.RemoveFavoriteAsync(favorite);
                 FavoriteImagePath = "EmptyStar.png";
             }
@@ -46,6 +53,13 @@ namespace Igry.ViewModels
             {
                 var newFavorite = new Favorite(currentUser.Email, CurrentGame.Id);
                 currentUser.Favorites.Add(newFavorite);
+
+                //Add game to favoriteGames list
+                var gameId = new List<int>();
+                gameId.Add(newFavorite.GameId);
+                var games = await gamesByIdApiService.GetGames(gameId);
+                favoriteGames.Add(games[0]);
+
                 await database.AddFavoriteAsync(newFavorite);
                 FavoriteImagePath = "FilledStar.png";
             }
@@ -64,6 +78,11 @@ namespace Igry.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
+            if (parameters.TryGetValue<ObservableCollection<Game>>("FavoriteGames", out var favoriteGames))
+            {
+
+            }
+
             var game = parameters.GetValue<Game>("Game");
             CurrentGame = game;
             AdjustCurrentGameGenre();

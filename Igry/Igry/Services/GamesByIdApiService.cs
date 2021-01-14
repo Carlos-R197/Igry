@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Igry.Services
 {
-    public class GamesByNameApiService
+    public class GamesByIdApiService
     {
         public async Task<IList<Game>> GetGames(List<int> gamesIds)
         {

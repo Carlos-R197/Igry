@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Igry.Models;
 using Igry.Services;
+using Prism;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -14,11 +15,12 @@ namespace Igry.ViewModels
     {
         private readonly INavigationService navigationService;
         private readonly GameOfTheMonthApiService gameOfTheMonthApiService;
-        private readonly GamesByNameApiService gamesApiService;
+        private readonly GamesByIdApiService gamesApiService;
         private readonly RecommendedGamesApiService recommendedGamesApiService;
         private readonly DelegateCommand selectedGameCommand;
         private readonly DelegateCommand recommendedGameSelectedCommand;
         private readonly User currentUser;
+        private bool isInitialized;
 
         public Game GameOfTheWeek { get; private set; }
         public ObservableCollection<Game> FavoriteGames { get; private set; }
@@ -28,8 +30,9 @@ namespace Igry.ViewModels
         public DelegateCommand SelectedGameCommand => selectedGameCommand;
         public DelegateCommand RecommendedGameSelectedCommand => recommendedGameSelectedCommand;
 
+
         public HomeViewModel(INavigationService navigationService, GameOfTheMonthApiService getGameApiService, 
-            GamesByNameApiService gamesApiService, RecommendedGamesApiService recommendedGames, User user)
+            GamesByIdApiService gamesApiService, RecommendedGamesApiService recommendedGames, User user, ObservableCollection<Game> favoriteGames)
         {
             this.navigationService = navigationService;
             this.gameOfTheMonthApiService = getGameApiService;
@@ -41,7 +44,7 @@ namespace Igry.ViewModels
             this.recommendedGameSelectedCommand = new DelegateCommand(ShowSelectedRecommendedGameDetails);
             this.currentUser = user;
 
-            this.FavoriteGames = new ObservableCollection<Game>();
+            this.FavoriteGames = favoriteGames;
             this.RecommendedGames = new ObservableCollection<Game>();
         }
 
@@ -50,6 +53,7 @@ namespace Igry.ViewModels
             LoadFavoriteGamesAsync();
             LoadRecommendedGamesAsync();
             GameOfTheWeek = await gameOfTheMonthApiService.GetGameOfTheMonth();
+            isInitialized = true;
         }
 
         public async Task LoadFavoriteGamesAsync()
@@ -81,6 +85,7 @@ namespace Igry.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Game", SelectedFavoriteGame);
+            navigationParams.Add("FavoriteGames", FavoriteGames);
             navigationService.NavigateAsync("GameDetailPage", navigationParams);
         }
 
