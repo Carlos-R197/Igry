@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Igry.Services
 {
-    public class GetGameApiService
+    public class GameOfTheMonthApiService
     {
         public async Task<Game> GetGameOfTheMonth()
         {

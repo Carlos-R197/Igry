@@ -3,33 +3,75 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Igry.Models;
 using Igry.Services;
+using Igry.Objects;
 
 namespace Igry.ViewModels
 {
     public class GameDetailViewModel : BaseViewModel, INavigatedAware
     {
-        IGameRandomizerApiService apiService;
+        private readonly IGameRandomizerApiService apiService;
+        private readonly DelegateCommand favoriteCommand;
+        private readonly Database database;
+        private readonly User currentUser;
 
         public Game CurrentGame { get; set; }
         public string CurrentGameGenres { get; set; }
         public string CurrentGamePlatforms { get; set; }
+        public string FavoriteImagePath { get; set; }
+        public User CurrentUser => currentUser;
 
-        public GameDetailViewModel(IGameRandomizerApiService apiService)
+        public DelegateCommand FavoriteCommand => favoriteCommand;
+
+        public GameDetailViewModel(IGameRandomizerApiService apiService, Database db, User user)
         {
             this.apiService = apiService;
+            favoriteCommand = new DelegateCommand(ManageGameFavoriteStatus);
+            database = db;
+            currentUser = user;
+        }
+
+        private async void ManageGameFavoriteStatus()
+        {
+            var favorite = currentUser.Favorites.FirstOrDefault(t => t.GameId == CurrentGame.Id);
+            if (favorite != null)
+            {
+                currentUser.Favorites.Remove(favorite);
+                await database.RemoveFavoriteAsync(favorite);
+                FavoriteImagePath = "EmptyStar.png";
+            }
+            else
+            {
+                var newFavorite = new Favorite(currentUser.Email, CurrentGame.Id);
+                currentUser.Favorites.Add(newFavorite);
+                await database.AddFavoriteAsync(newFavorite);
+                FavoriteImagePath = "FilledStar.png";
+            }
         }
 
 
-        async void GetRandomGame()
+        private async void GetRandomGame()
         {
             CurrentGame = await apiService.GetRandomAsync();
             AdjustCurrentGameGenre();
             AdjustCurrentGamePlatforms();
         }
 
-        void AdjustCurrentGameGenre()
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {}
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var game = parameters.GetValue<Game>("Game");
+            CurrentGame = game;
+            AdjustCurrentGameGenre();
+            AdjustCurrentGamePlatforms();
+            AdjustFavoriteImagePath();
+        }
+
+        private void AdjustCurrentGameGenre()
         {
             if (CurrentGame.Genres.Count > 0)
             {
@@ -40,7 +82,7 @@ namespace Igry.ViewModels
             }
         }
 
-        void AdjustCurrentGamePlatforms()
+        private void AdjustCurrentGamePlatforms()
         {
             CurrentGamePlatforms = "";
             if (CurrentGame.Platforms.Count > 0)
@@ -53,15 +95,13 @@ namespace Igry.ViewModels
                 CurrentGamePlatforms = "No platform data available for this game";
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {}
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        private void AdjustFavoriteImagePath()
         {
-            var game = parameters.GetValue<Game>("Game");
-            CurrentGame = game;
-            AdjustCurrentGameGenre();
-            AdjustCurrentGamePlatforms();
+            if (currentUser.Favorites.Any(t => t.GameId == CurrentGame.Id))
+                FavoriteImagePath = "FilledStar.png";
+            else
+                FavoriteImagePath = "EmptyStar.png";
         }
     }
 }

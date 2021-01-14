@@ -15,29 +15,48 @@ namespace Igry.Objects
         public Database(string dbPath)
         {
             if (!File.Exists(dbPath))
+            {
                 File.Create(dbPath);
+                database = new SQLiteAsyncConnection(dbPath);
+                database.ExecuteAsync("CREATE TABLE User (Email nvarchar(50) PRIMARY KEY, Name nvarchar(50), Password nvarchar(50));").Wait();
+                database.ExecuteAsync("CREATE TABLE Favorite (UserEmail nvarchar(50), GameId int, FOREIGN KEY (UserEmail) REFERENCES User(Email));").Wait();
+            }
+            else
+               database = new SQLiteAsyncConnection(dbPath);
 
-            database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<User>().Wait();
         }
 
-        public Task<User> GetUserAsync(string email, string password)
+        public async Task<User> GetUserAsync(string email, string password)
         {
-            return database.Table<User>().FirstOrDefaultAsync(t => t.Email == email && t.Password == password); 
+            List<User> users = await database.QueryAsync<User>($"SELECT * FROM User WHERE \'{email}\' == Email");
+            if (users.Count > 0)
+            {
+                users[0].Favorites = await database.QueryAsync<Favorite>($"SELECT * FROM Favorite WHERE \'{email}\' == UserEmail");
+                return users[0];
+            }
+            else
+                return null;
         }
 
         public Task SaveUserAsync(User user)
         {
-            return database.InsertAsync(user);
+            return database.ExecuteAsync($"INSERT INTO User (Email, Name, Password) VALUES (\'{user.Email}\', \'{user.Name}\', \'{user.Password}\');");
         }
 
         public async Task<bool> IsEmailTaken(string email)
         {
             var user = await database.Table<User>().FirstOrDefaultAsync(t => t.Email == email);
-            if (user != null)
-                return true;
-            else
-                return false;
+            return user != null;
+        }
+
+        public Task AddFavoriteAsync(Favorite favorite)
+        {
+            return database.ExecuteAsync($"INSERT INTO Favorite (UserEmail, GameId) VALUES (\'{favorite.UserEmail}\', \'{favorite.GameId}\');");
+        }
+
+        public Task RemoveFavoriteAsync(Favorite favorite)
+        {
+            return database.ExecuteAsync($"DELETE FROM Favorite WHERE UserEmail == \'{favorite.UserEmail}\'");
         }
     }
 }

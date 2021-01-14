@@ -13,6 +13,8 @@ using Igry.Services;
 using Igry.Objects;
 using System.IO;
 
+using Igry.Models;
+
 namespace Igry
 {
     public partial class App : PrismApplication
@@ -30,10 +32,13 @@ namespace Igry
         {
             var database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "myDB.db3"));
             containerRegistry.RegisterInstance(database);
+            containerRegistry.RegisterInstance(new User());
 
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
             containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();
-            containerRegistry.Register<GetGameApiService>();
+            containerRegistry.Register<GameOfTheMonthApiService>();
+            containerRegistry.Register<GamesByNameApiService>();
+            containerRegistry.Register<RecommendedGamesApiService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();

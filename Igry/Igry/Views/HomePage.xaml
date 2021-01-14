@@ -1,16 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Igry.Views"
              x:Class="Igry.Views.HomePage"
              Title="Home">
     <ContentPage.Content>
-        <Grid RowDefinitions="3*, 7*" ColumnDefinitions="*" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
-            <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Grid.Row="0" Grid.Column="0" 
+        <Grid RowDefinitions="3*, *, 3*, *, 3*" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+            <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Grid.Row="0" 
                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
-            <Label Text="Game of the month" Grid.Row="0" Grid.Column="0" 
+            <Label Text="Game of the month" Grid.Row="0" 
                    VerticalOptions="Center" HorizontalOptions="Center"/>
-            <Label Text="{Binding GameOfTheWeek.Name}" Grid.Row="0" Grid.Column="0"
+            <Label Text="{Binding GameOfTheWeek.Name}" Grid.Row="0" 
                    VerticalOptions="End" HorizontalOptions="Center"/>
+
+            <Label Text="Your Favorite Games" Grid.Row="1" HorizontalOptions="Start" Margin="10, 0, 0, 0"/>
+            <CollectionView ItemsSource="{Binding FavoriteGames}" SelectedItem="{Binding SelectedFavoriteGame}" SelectionChangedCommand="{Binding SelectedGameCommand}" 
+                            SelectionMode="Single" Grid.Row="2" Margin="10, 0, 0, 0">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="10"></GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <views:GameMenuItemView/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <Label Text="You don't have any favorite games to display" HorizontalTextAlignment="Center" 
+                               HorizontalOptions="Fill" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                    </ContentView>
+                </CollectionView.EmptyView>
+                
+            </CollectionView>
+
+            <Label Text="Recommendations" Grid.Row="3" HorizontalOptions="Start" Margin="10, 0, 0, 0" />
+            <CollectionView ItemsSource="{Binding RecommendedGames}" SelectedItem="{Binding SelectedRecommendedGame}" SelectionChangedCommand="{Binding RecommendedGameSelectedCommand}" 
+                            SelectionMode="Single" Grid.Row="4" Margin="10, 0, 0, 0">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="10"></GridItemsLayout>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <views:GameMenuItemView/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <Label Text="There aren't any recommended games available" HorizontalTextAlignment="Center" 
+                               HorizontalOptions="Fill" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                    </ContentView>
+                </CollectionView.EmptyView>
+
+            </CollectionView>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

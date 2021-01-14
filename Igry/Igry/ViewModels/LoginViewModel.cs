@@ -21,26 +21,36 @@ namespace Igry.ViewModels
         private readonly IPageDialogService dialogService;
         private readonly DelegateCommand logInCommand;
 
+        private User currentUser;
+
         public Email Email { get; set; } = new Email();
         public Password Password { get; set; } = new Password();
         public DelegateCommand LogInCommand => logInCommand;
 
 
-        public LoginViewModel(Database database, INavigationService navigationService, IPageDialogService dialogService)
+        public LoginViewModel(Database database, INavigationService navigationService, IPageDialogService dialogService, User user)
         {
             this.database = database;
             this.navigationService = navigationService;
             this.dialogService = dialogService;
             logInCommand = new DelegateCommand(LogIn);
+            currentUser = user;
         }
 
         private async void LogIn()
         {
             if (await EntriesMeetRequirementsAsync())
             {
-                var user = await database.GetUserAsync(Email.Value, Password.Value);
+                User user = await database.GetUserAsync(Email.Value, Password.Value);
                 if (user != null)
+                {
+                    currentUser.Email = user.Email;
+                    currentUser.Name = user.Name;
+                    currentUser.Password = user.Password;
+                    currentUser.Favorites = user.Favorites;
+
                     await navigationService.NavigateAsync("/HomeTabbedPage");
+                }
                 else
                     await dialogService.DisplayAlertAsync("Error", "The user doesn't exist. Check your email and password.", "OK");
             }
