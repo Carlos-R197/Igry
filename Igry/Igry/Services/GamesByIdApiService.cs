@@ -10,7 +10,7 @@ namespace Igry.Services
 {
     public class GamesByIdApiService
     {
-        public async Task<IList<Game>> GetGames(List<int> gamesIds)
+        public async Task<IList<Game>> GetGamesAsync(List<int> gamesIds)
         {
             IList<Game> games = null;
             var client = new HttpClient();

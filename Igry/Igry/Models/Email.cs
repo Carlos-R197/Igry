@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace Igry.Objects
+namespace Igry.Models
 {
-    public class Email : BaseObject
+    public class Email : BaseModel
     {
         public string Value { get; set; }
            

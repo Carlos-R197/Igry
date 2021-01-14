@@ -10,7 +10,7 @@ namespace Igry.Services
 {
     public class GameOfTheMonthApiService
     {
-        public async Task<Game> GetGameOfTheMonth()
+        public async Task<Game> GetGameOfTheMonthAsync()
         {
             Game game = null;
             var client = new HttpClient();

@@ -20,7 +20,6 @@ namespace Igry.ViewModels
         private readonly DelegateCommand selectedGameCommand;
         private readonly DelegateCommand recommendedGameSelectedCommand;
         private readonly User currentUser;
-        private bool isInitialized;
 
         public Game GameOfTheWeek { get; private set; }
         public ObservableCollection<Game> FavoriteGames { get; private set; }
@@ -52,8 +51,7 @@ namespace Igry.ViewModels
         {
             LoadFavoriteGamesAsync();
             LoadRecommendedGamesAsync();
-            GameOfTheWeek = await gameOfTheMonthApiService.GetGameOfTheMonth();
-            isInitialized = true;
+            GameOfTheWeek = await gameOfTheMonthApiService.GetGameOfTheMonthAsync();
         }
 
         public async Task LoadFavoriteGamesAsync()
@@ -65,7 +63,7 @@ namespace Igry.ViewModels
             var ids = new List<int>();
             foreach (var favorite in currentUser.Favorites)
                 ids.Add(favorite.GameId);
-            IList<Game> games = await gamesApiService.GetGames(ids);
+            IList<Game> games = await gamesApiService.GetGamesAsync(ids);
             foreach (var game in games)
                 FavoriteGames.Add(game);
         }
@@ -85,8 +83,7 @@ namespace Igry.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Game", SelectedFavoriteGame);
-            navigationParams.Add("FavoriteGames", FavoriteGames);
-            navigationService.NavigateAsync("GameDetailPage", navigationParams);
+            navigationService.NavigateAsync(Constants.GameDetailPage, navigationParams);
         }
 
         private void ShowSelectedRecommendedGameDetails()
@@ -96,7 +93,7 @@ namespace Igry.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Game", SelectedRecommendedGame);
-            navigationService.NavigateAsync("GameDetailPage", navigationParams);
+            navigationService.NavigateAsync(Constants.GameDetailPage, navigationParams);
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)

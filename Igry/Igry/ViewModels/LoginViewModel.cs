@@ -10,7 +10,6 @@ using System.Windows.Input;
 using Prism.Navigation.Xaml;
 using Prism.Navigation;
 using Prism.Services;
-using Igry.Objects;
 
 namespace Igry.ViewModels
 {
@@ -49,7 +48,7 @@ namespace Igry.ViewModels
                     currentUser.Password = user.Password;
                     currentUser.Favorites = user.Favorites;
 
-                    await navigationService.NavigateAsync("/HomeTabbedPage");
+                    await navigationService.NavigateAsync($"{Constants.HomeTabbedPage}");
                 }
                 else
                     await dialogService.DisplayAlertAsync("Error", "The user doesn't exist. Check your email and password.", "OK");

@@ -3,7 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:Igry.Views"
              x:Class="Igry.Views.HomePage"
-             Title="Home">
+             Title="Home"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid RowDefinitions="3*, *, 3*, *, 3*" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
             <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Grid.Row="0" 
@@ -17,7 +26,7 @@
             <CollectionView ItemsSource="{Binding FavoriteGames}" SelectedItem="{Binding SelectedFavoriteGame}" SelectionChangedCommand="{Binding SelectedGameCommand}" 
                             SelectionMode="Single" Grid.Row="2" Margin="10, 0, 0, 0">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="10"></GridItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="10" VerticalItemSpacing="10"></GridItemsLayout>
                 </CollectionView.ItemsLayout>
                 
                 <CollectionView.ItemTemplate>

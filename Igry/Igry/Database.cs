@@ -6,7 +6,7 @@ using Igry.Models;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Igry.Objects
+namespace Igry
 {
     public class Database
     {

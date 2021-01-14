@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Text;
 using System.Linq;
 
-namespace Igry.Objects
+namespace Igry.Models
 {
-    public class Password : BaseObject
+    public class Password : BaseModel
     {
         private const int minimumAmountCharacters = 7;
         private const string specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";

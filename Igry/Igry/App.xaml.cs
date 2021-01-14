@@ -10,7 +10,6 @@ using Prism.Unity;
 using Igry.ViewModels;
 using Igry.Views;
 using Igry.Services;
-using Igry.Objects;
 using System.IO;
 
 using Igry.Models;
@@ -20,21 +19,25 @@ namespace Igry
 {
     public partial class App : PrismApplication
     {
+        private const string databaseName = "myDB.db3";
+
         public App(IPlatformInitializer initializer = null) : base(initializer) 
         { }
 
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync($"{Constants.NavigationPage}/{Constants.LoginPage}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            var database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "myDB.db3"));
+            var database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), databaseName));
+            var user = new User();
+            var favoriteGames = new ObservableCollection<Game>();
             containerRegistry.RegisterInstance(database);
-            containerRegistry.RegisterInstance(new User());
-            containerRegistry.RegisterInstance(new ObservableCollection<Game>());
+            containerRegistry.RegisterInstance(user);
+            containerRegistry.RegisterInstance(favoriteGames);
 
             containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
             containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();

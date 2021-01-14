@@ -6,13 +6,15 @@ using System.Text;
 using System.Linq;
 using Igry.Models;
 using Igry.Services;
-using Igry.Objects;
 using System.Collections.ObjectModel;
 
 namespace Igry.ViewModels
 {
     public class GameDetailViewModel : BaseViewModel, INavigatedAware
     {
+        private const string isFavoriteImage = "FilledStar.png";
+        private const string isNotFavoriteImage = "EmptyStart.png";
+
         private readonly IGameRandomizerApiService apiService;
         private readonly GamesByIdApiService gamesByIdApiService;
         private readonly DelegateCommand favoriteCommand;
@@ -47,7 +49,7 @@ namespace Igry.ViewModels
                 currentUser.Favorites.Remove(favorite);
                 favoriteGames.Remove(favoriteGames.First(t => t.Id == favorite.GameId));
                 await database.RemoveFavoriteAsync(favorite);
-                FavoriteImagePath = "EmptyStar.png";
+                FavoriteImagePath = isNotFavoriteImage;
             }
             else
             {
@@ -57,11 +59,11 @@ namespace Igry.ViewModels
                 //Add game to favoriteGames list
                 var gameId = new List<int>();
                 gameId.Add(newFavorite.GameId);
-                var games = await gamesByIdApiService.GetGames(gameId);
+                var games = await gamesByIdApiService.GetGamesAsync(gameId);
                 favoriteGames.Add(games[0]);
 
                 await database.AddFavoriteAsync(newFavorite);
-                FavoriteImagePath = "FilledStar.png";
+                FavoriteImagePath = isFavoriteImage;
             }
         }
 
@@ -74,15 +76,12 @@ namespace Igry.ViewModels
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
-        {}
+        {
+
+        }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.TryGetValue<ObservableCollection<Game>>("FavoriteGames", out var favoriteGames))
-            {
-
-            }
-
             var game = parameters.GetValue<Game>("Game");
             CurrentGame = game;
             AdjustCurrentGameGenre();
@@ -118,9 +117,9 @@ namespace Igry.ViewModels
         private void AdjustFavoriteImagePath()
         {
             if (currentUser.Favorites.Any(t => t.GameId == CurrentGame.Id))
-                FavoriteImagePath = "FilledStar.png";
+                FavoriteImagePath = isFavoriteImage;
             else
-                FavoriteImagePath = "EmptyStar.png";
+                FavoriteImagePath = isNotFavoriteImage;
         }
     }
 }
