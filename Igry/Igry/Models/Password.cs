@@ -10,7 +10,7 @@ namespace Igry.Models
     {
         private const int minimumAmountCharacters = 7;
 
-        private readonly Regex specialCharactersExpression = new Regex(@'!\"#$%&\'() * +, -./:;<=>?@[\\]^_`{|}~');
+        private const string specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
         public string Value { get; set; }
 
 
@@ -28,9 +28,16 @@ namespace Igry.Models
 
         private bool ContainsSpecialCharacter()
         {
-            MatchCollection matches = validEmailExpression.Matches(Value);
-
-            return matches.Count > 0;
+            foreach (char c in Value)
+            {
+                foreach (char sc in specialCharacters)
+                {
+                    if (c == sc)
+                        return true;
+                }
+                
+            }
+            return false;
         }
     }
 }
