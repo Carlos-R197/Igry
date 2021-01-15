@@ -14,6 +14,7 @@ using System.IO;
 
 using Igry.Models;
 using System.Collections.ObjectModel;
+using Igry.Constants;
 
 namespace Igry
 {
@@ -27,7 +28,7 @@ namespace Igry
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync($"{Constants.NavigationPage}/{Constants.LoginPage}");
+            await NavigationService.NavigateAsync($"{PageName.NavigationPage}/{PageName.LoginPage}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

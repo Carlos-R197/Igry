@@ -10,14 +10,13 @@ using System.Windows.Input;
 using Prism.Navigation.Xaml;
 using Prism.Navigation;
 using Prism.Services;
+using Igry.Constants;
 
 namespace Igry.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
         private readonly Database database;
-        private readonly INavigationService navigationService;
-        private readonly IPageDialogService dialogService;
         private readonly DelegateCommand logInCommand;
 
         private User currentUser;
@@ -28,10 +27,9 @@ namespace Igry.ViewModels
 
 
         public LoginViewModel(Database database, INavigationService navigationService, IPageDialogService dialogService, User user)
+            : base(navigationService, dialogService)
         {
             this.database = database;
-            this.navigationService = navigationService;
-            this.dialogService = dialogService;
             logInCommand = new DelegateCommand(LogIn);
             currentUser = user;
         }
@@ -48,10 +46,10 @@ namespace Igry.ViewModels
                     currentUser.Password = user.Password;
                     currentUser.Favorites = user.Favorites;
 
-                    await navigationService.NavigateAsync($"/{Constants.HomeTabbedPage}");
+                    await navigationService.NavigateAsync($"/{PageName.HomeTabbedPage}");
                 }
                 else
-                    await dialogService.DisplayAlertAsync("Error", "The user doesn't exist. Check your email and password.", "OK");
+                    await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidCredentials, AlertButtonMessages.Dismiss);
             }
         }
 
@@ -60,11 +58,11 @@ namespace Igry.ViewModels
             bool entriesMeetRequirements = false;
 
             if (string.IsNullOrWhiteSpace(Password.Value) || string.IsNullOrWhiteSpace(Email.Value))
-                await dialogService.DisplayAlertAsync("Error", "The entries must be filled before attempting to login", "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.EmptyEntries, AlertButtonMessages.Dismiss);
             else if (!Email.IsValid())
-                await dialogService.DisplayAlertAsync("Error", "The email isn't valid.", "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidEmail, AlertButtonMessages.Dismiss);
             else if (!Password.IsValid())
-                await dialogService.DisplayAlertAsync("Error", "The password isn't valid", "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidPassword, AlertButtonMessages.Dismiss);
             else
                 entriesMeetRequirements = true;
 

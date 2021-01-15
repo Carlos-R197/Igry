@@ -4,9 +4,9 @@ using System.Text;
 using Xamarin.Forms;
 using Igry.Views;
 
-namespace Igry
+namespace Igry.Constants
 {
-    public static class Constants
+    public static class PageName
     {
         public static string NavigationPage = typeof(NavigationPage).Name;
         public static string LoginPage = typeof(LoginPage).Name;

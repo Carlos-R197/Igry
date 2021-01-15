@@ -2,15 +2,69 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.Views.RegisterPage"
+             xmlns:controls="clr-namespace:Igry.Controls;assembly=Igry"
              Title="Register">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="User information" HorizontalOptions="Center"/>
-            <Entry Placeholder="Email" Keyboard="Email" Text="{Binding Email.Value}" Margin="20, 0, 20, 0"/>
-            <Entry Placeholder="Name" Text="{Binding Name}" Margin="20, 0, 20, 0" />
-            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" Margin="20, 0, 20, 0"/>
-            <Entry Placeholder="Confirm password" IsPassword="True" Text="{Binding ConfirmPassword}" Margin="20, 0, 20, 0"/>
-            <Button Text="Register" TextColor="Black" BackgroundColor="Gray" Command="{Binding RegisterCommand}" Margin="20, 0, 20, 0"/>
+            <StackLayout VerticalOptions="StartAndExpand" Margin="0,0,0,30">
+                <Image Source="logo.png" HorizontalOptions="Center" HeightRequest="128" />
+                <Label Text="User info" FontSize="Medium" HorizontalOptions="Center"/>
+                <controls:StandardEntry 
+                    Padding="13"
+                    BackgroundColor="#31FFFFFF"
+                    BorderColor="Gray"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    PlaceholderColor="Gray"
+                    Placeholder="Email" 
+                    Keyboard="Email" 
+                    Text="{Binding Email.Value}"
+                    Margin="20, 5, 20, 5"/>
+
+                <controls:StandardEntry 
+                    Padding="13"
+                    BackgroundColor="#31FFFFFF"
+                    BorderColor="Gray"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    PlaceholderColor="Gray" 
+                    Placeholder="Name" 
+                    Text="{Binding Name}" 
+                    Margin="20, 5, 20, 5"/>
+
+                <controls:StandardEntry 
+                    Padding="13"
+                    BackgroundColor="#31FFFFFF"
+                    BorderColor="Gray"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    PlaceholderColor="Gray"
+                    Placeholder="Password" 
+                    IsPassword="True" 
+                    Text="{Binding Password.Value}" 
+                    Margin="20, 5, 20, 5"/>
+
+                <controls:StandardEntry 
+                    Padding="13"
+                    BackgroundColor="#31FFFFFF"
+                    BorderColor="Gray"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    PlaceholderColor="Gray"
+                    Placeholder="Confirm password"
+                    IsPassword="True" 
+                    Text="{Binding ConfirmPassword}" 
+                    Margin="20, 5, 20, 5"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Button 
+                Text="Register" 
+                TextColor="White" 
+                BackgroundColor="#039be5" 
+                Command="{Binding RegisterCommand}" 
+                Margin="20, 0, 20, 0"/>
+            </StackLayout>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

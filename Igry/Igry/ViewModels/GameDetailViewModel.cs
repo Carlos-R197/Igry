@@ -7,6 +7,8 @@ using System.Linq;
 using Igry.Models;
 using Igry.Services;
 using System.Collections.ObjectModel;
+using Igry.Constants;
+using Prism.Services;
 
 namespace Igry.ViewModels
 {
@@ -30,8 +32,9 @@ namespace Igry.ViewModels
 
         public DelegateCommand FavoriteCommand => favoriteCommand;
 
-        public GameDetailViewModel(GamesByIdApiService gamesByIdApiService, Database db, 
-            User user, ObservableCollection<Game> favoriteGames)
+        public GameDetailViewModel(INavigationService navService, IPageDialogService dialogService,
+            GamesByIdApiService gamesByIdApiService, Database db, 
+            User user, ObservableCollection<Game> favoriteGames) : base(navService, dialogService)
         {
             this.gamesByIdApiService = gamesByIdApiService;
             favoriteCommand = new DelegateCommand(ManageGameFavoriteStatus);
@@ -101,7 +104,7 @@ namespace Igry.ViewModels
                     CurrentGamePlatforms += ", " + CurrentGame.Platforms[i].PlatformData.Name;
             }
             else
-                CurrentGamePlatforms = "No platform data available for this game";
+                CurrentGamePlatforms = ErrorMessages.NoDataForGame;
         }
 
 

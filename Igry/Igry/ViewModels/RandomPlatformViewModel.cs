@@ -1,6 +1,9 @@
-﻿using Igry.Models;
+﻿using Igry.Constants;
+using Igry.Models;
 using Igry.Services;
 using Prism.Commands;
+using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +20,9 @@ namespace Igry.ViewModels
         public DelegateCommand<string> TapCommand => new DelegateCommand<string>(async (url) => await urlService.OpenUrlAsync(url));
         public PlatformData Platform { get; set; }
 
-        public RandomPlatformViewModel(IPlatformRandomizerApiService platformService, OpenUrlService urlService)
+        public RandomPlatformViewModel(INavigationService navigationService, IPageDialogService dialogService,
+            IPlatformRandomizerApiService platformService, OpenUrlService urlService)
+            :base(navigationService, dialogService)
         {
             this.apiService = platformService;
             this.urlService = urlService;
@@ -26,6 +31,12 @@ namespace Igry.ViewModels
 
         async void GetRandomPlatform()
         {
+            if (!ThereIsInternetAccess())
+            {
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.NoInternetAccess, AlertButtonMessages.Dismiss);
+                return;
+            }
+
             Platform = await apiService.GetRandomPlatformAsync();
         }
     }

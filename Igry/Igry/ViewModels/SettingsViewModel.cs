@@ -1,5 +1,6 @@
 ﻿using Igry.ViewModels;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,9 +15,9 @@ namespace Igry.Views
         public INavigationService navigationService;
         public ICommand RandomPlatformCommand => new Command(RandomPlatform);
 
-        public SettingsViewModel(INavigationService navigationService)
+        public SettingsViewModel(INavigationService navigationService, IPageDialogService dialogService)
+            : base(navigationService, dialogService)
         {
-            this.navigationService = navigationService;
         }
 
         private async void GameDetail()
