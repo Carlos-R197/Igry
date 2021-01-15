@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Igry.Views.SearchPage"
+             xmlns:Controls="clr-namespace:Igry.Controls"
+             Title="Search">
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="6*,*" RowDefinitions="*,14*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5,0,5,0">
+            <Controls:StandardEntry
+                BackgroundColor="#31FFFFFF"
+                BorderColor="Gray"
+                BorderThickness="1"
+                CornerRadius="8"
+                PlaceholderColor="Gray"
+                Placeholder="Game Name"
+                Text="{Binding Text}"
+                Margin="0, 5, 0, 5"
+                Grid.ColumnSpan="1"/>
+            
+            <Button Text="Search" Grid.Column="1" Command="{Binding SearchGameCommand}"/>
+            <CollectionView x:Name="catalog" ItemsSource="{Binding GameResults}" SelectionMode="Single" Grid.Row="1" Grid.ColumnSpan="2"
+                            SelectedItem="{Binding SelectedGame}" SelectionChangedCommand="{Binding GameDetailPageCommand}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,4*" BackgroundColor="White" WidthRequest="100" HeightRequest="80">
+                            <Image Aspect="AspectFill" Source="{Binding BackgroundImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5"/>
+                            <StackLayout Grid.Column="1" Padding="0,10,0,10" Spacing="-3">
+                                <Label Text="{Binding Name}"/>
+                                <Label Text="{Binding Released}" TextColor="{StaticResource Key=LightPrimaryColor}" FontSize="Micro" Grid.Row="1"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

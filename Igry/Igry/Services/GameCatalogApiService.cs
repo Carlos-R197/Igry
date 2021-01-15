@@ -15,7 +15,7 @@ namespace Igry.Services
         public string Append;
         public async Task<IList<Game>> GetPageAsync(int page, IList<Genre> genres)
         {
-            IList<Game> game = null;
+            IList<Game> game = new List<Game>();
             var client = new HttpClient();
             int pageSize = 20;
             string query = $"https://api.rawg.io/api/games?key=9b88a4289b784c19b41aff2c40764c6a&page={page}&page_size={pageSize}";

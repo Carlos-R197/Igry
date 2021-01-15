@@ -10,7 +10,7 @@
     <TabbedPage.Children>
         <local:HomePage/>
         <local:CatalogPage/>
-        <local:ProfilePage/>
+        <local:SearchPage/>
         <local:SettingsPage/>
     </TabbedPage.Children>
 </TabbedPage>

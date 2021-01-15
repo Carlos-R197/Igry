@@ -5,11 +5,10 @@
              Title="Game Detail"
              BackgroundColor="White">
     <ContentPage.Content>
-        <Grid RowDefinitions="*, 3*, 6*" Padding="20, 20, 20, 20">
+        <Grid RowDefinitions="*, 3*, 6*">
             <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Down" Command="{Binding NavigateHomeCommand}"/>
             </Grid.GestureRecognizers>
-            
             <Label Text="{Binding CurrentGame.Name}" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="End" 
                    Style="{StaticResource TitleLabel}"/>
             <ImageButton Source="{Binding FavoriteImagePath}" Command="{Binding FavoriteCommand}" WidthRequest="30" HeightRequest="30"
