@@ -10,6 +10,6 @@ namespace Igry.Constants
     {
         // Register Page 
         public static string RegistrationCompleted = "Your account has been created successfully.";
-
+        public static string LogOut = "Do you want to log out?";
     }
 }

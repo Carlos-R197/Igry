@@ -16,7 +16,6 @@ namespace Igry.Constants
         public static string CatalogPage = typeof(CatalogPage).Name;
         public static string ProfilePage = typeof(ProfilePage).Name;
         public static string HomePage = typeof(HomePage).Name;
-        public static string RandomPlatformPage = typeof(RandomPlatformPage).Name;
         public static string HomeTabbedPage = typeof(HomeTabbedPage).Name;
 
     }

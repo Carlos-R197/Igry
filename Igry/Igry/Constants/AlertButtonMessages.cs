@@ -8,9 +8,9 @@ namespace Igry.Constants
 {
     public static class AlertButtonMessages
     {
-
         public static string Dismiss = "OK";
-
+        public static string Accept = "Yes";
+        public static string Cancel = "Cancel";
     }
 }
 
