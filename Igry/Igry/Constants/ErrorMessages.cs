@@ -15,5 +15,7 @@ namespace Igry.Constants
         public static string InvalidPassword = "Password doesnt meet the requirements.";
         public static string InvalidEmail = "This is not a valid Email Address.";
 
+        // Login Page 
+        public static string InvalidCredentials = "Invalid Email or Password, check and try again.";
     }
 }
