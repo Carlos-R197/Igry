@@ -12,8 +12,8 @@
             
             <Label Text="{Binding CurrentGame.Name}" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="End" 
                    Style="{StaticResource TitleLabel}"/>
-            <ImageButton Source="{Binding FavoriteImagePath}" Command="{Binding FavoriteCommand}" 
-                         Grid.Row="0" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="White" WidthRequest="30" HeightRequest="30"/>
+            <ImageButton Source="{Binding FavoriteImagePath}" Command="{Binding FavoriteCommand}" WidthRequest="30" HeightRequest="30"
+                         Grid.Row="0" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="Transparent" />
 
             <Image Source="{Binding CurrentGame.BackgroundImage}" Grid.Row="1" Grid.Column="0" Aspect="AspectFill"/>
 

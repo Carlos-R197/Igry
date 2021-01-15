@@ -26,6 +26,10 @@
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="FontFamily" Value="Gotham"/>
             </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Gotham"/>
+            </Style>
             <!-- Explicit Styles -->
             <Style x:Key="TitleLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource DarkPrimaryColor}"></Setter>

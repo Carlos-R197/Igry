@@ -129,7 +129,7 @@ namespace Igry.ViewModels
             if (userChoice == true)
             {
                 FavoriteGames.Clear();
-                await navigationService.NavigateAsync($"/{PageName.LoginPage}");
+                await navigationService.NavigateAsync($"/{PageName.NavigationPage}/{PageName.LoginPage}");
             }
         }
     }

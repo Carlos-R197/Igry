@@ -2,11 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.Views.SettingsPage"
-             Title="More">
+             Title="More"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, *, *">
-            <Button Text="GameDetail Debug"  Grid.Column="2" Command="{Binding GameDetailCommand}"/>
-            <Button Text="RndPlatform Debug" Grid.Row="1" Grid.Column="2" Command="{Binding RandomPlatformCommand}"/>
+        <Grid ColumnDefinitions="*, *" RowDefinitions="*" >
+            <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                <ImageButton Source="logout.png" Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding LogOutCommand}"/>
+                <Label Text="Log out" HorizontalOptions="Center" Style="{StaticResource TitleLabel}"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <ImageButton Source="RAWGAPI.png" Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding GoToRawgApiCommand}"/>
+                <Label Text="RAWG API" HorizontalOptions="Center" Style="{StaticResource TitleLabel}"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
