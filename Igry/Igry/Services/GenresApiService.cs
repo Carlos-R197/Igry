@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Igry.Services
 {
-    class GetGenresApiService : IGetGenresApiService
+    class GenresApiService : IGenresApiService
     {
         public async Task<IList<Genre>> GetGenres()
         {
