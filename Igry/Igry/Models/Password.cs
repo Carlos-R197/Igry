@@ -37,7 +37,6 @@ namespace Igry.Models
                         return true;
                 }
             }
-
             return false;
         }
     }
