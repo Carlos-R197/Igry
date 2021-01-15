@@ -41,7 +41,8 @@
                 
                 <Button 
                     Text="Login" 
-                    TextColor="White" 
+                    TextColor="White"
+                    FontFamily="Gotham"
                     BackgroundColor="#039be5" 
                     Command="{Binding LogInCommand}" 
                     Margin="0, 20, 0, 20" 
@@ -51,7 +52,8 @@
                 
                 <Button 
                     Text="Sign Up" 
-                    TextColor="Black" 
+                    TextColor="Black"
+                    FontFamily="Gotham"
                     BackgroundColor="Transparent" 
                     Command="{prism:NavigateTo 'RegisterPage'}"
                     HorizontalOptions="Center" 
