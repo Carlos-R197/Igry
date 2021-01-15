@@ -10,7 +10,7 @@
                 <SwipeGestureRecognizer Direction="Down" Command="{Binding NavigateHomeCommand}"/>
             </Grid.GestureRecognizers>
             <Label Text="{Binding CurrentGame.Name}" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="End" 
-                   Style="{StaticResource TitleLabel}"/>
+                   Style="{StaticResource TitleLabel}" TextColor="Black"/>
             <ImageButton Source="{Binding FavoriteImagePath}" Command="{Binding FavoriteCommand}" WidthRequest="30" HeightRequest="30"
                          Grid.Row="0" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="Transparent" />
 
