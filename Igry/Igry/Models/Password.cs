@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Igry.Models
 {
     public class Password : BaseModel
     {
         private const int minimumAmountCharacters = 7;
+        private const string specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-        private readonly Regex specialCharactersExpression = new Regex(@'!\"#$%&\'() * +, -./:;<=>?@[\\]^_`{|}~');
         public string Value { get; set; }
 
 
@@ -28,9 +29,16 @@ namespace Igry.Models
 
         private bool ContainsSpecialCharacter()
         {
-            MatchCollection matches = validEmailExpression.Matches(Value);
+            foreach (char c in Value)
+            {
+                foreach (char sc in specialCharacters)
+                {
+                    if (c == sc)
+                        return true;
+                }
+            }
 
-            return matches.Count > 0;
+            return false;
         }
     }
 }
