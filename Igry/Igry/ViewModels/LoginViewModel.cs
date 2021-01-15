@@ -48,7 +48,7 @@ namespace Igry.ViewModels
                     currentUser.Password = user.Password;
                     currentUser.Favorites = user.Favorites;
 
-                    await navigationService.NavigateAsync($"{Constants.HomeTabbedPage}");
+                    await navigationService.NavigateAsync($"/{Constants.HomeTabbedPage}");
                 }
                 else
                     await dialogService.DisplayAlertAsync("Error", "The user doesn't exist. Check your email and password.", "OK");

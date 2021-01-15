@@ -30,31 +30,33 @@ namespace Igry.Views
         class CatalogPageMasterViewModel : INotifyPropertyChanged
         {
             public ObservableCollection<CatalogPageMasterMenuItem> MenuItems { get; set; }
-            public IList<Genre> GenreList { get; set; }
+            public IList<Genre> GenresList { get; set; }
             IGetGenresApiService apiService = new GetGenresApiService();
-            ObservableCollection<CatalogPageMasterMenuItem> GenreMenuItems;
 
             public CatalogPageMasterViewModel()
             {
-                for (int i = 0; i < GenreList.Count; i++)
-                {
-                    GenreMenuItems.Add(new CatalogPageMasterMenuItem { Id = GenreList[i].Id, Title = GenreList[i].Name });
-                }
-                MenuItems = GenreMenuItems;
+               LoadGenres();
+               //MenuItems = new ObservableCollection<CatalogPageMasterMenuItem>();
+               //for (int i = 0; i < 19; i++)
+               //{                   
+               //     CatalogPageMasterMenuItem menuItem = new CatalogPageMasterMenuItem { Id = GenresList[i].Id, Title = GenresList[i].Name};
+               //     MenuItems.Add(menuItem);
+               //}
+
                 //    new ObservableCollection<CatalogPageMasterMenuItem>(new[]
                 //{
-                    
-                //    new CatalogPageMasterMenuItem { Id = 0, Title = "Accion" },
-                //    new CatalogPageMasterMenuItem { Id = 1, Title = "Aventura" },
-                //    new CatalogPageMasterMenuItem { Id = 2, Title = "Blah" },
-                //    new CatalogPageMasterMenuItem { Id = 3, Title = "Page 4" },
-                //    new CatalogPageMasterMenuItem { Id = 4, Title = "Page 5" },
-                //});
+
+                //        new CatalogPageMasterMenuItem { Id = 0, Title = "Accion" },
+                //        new CatalogPageMasterMenuItem { Id = 1, Title = "Aventura" },
+                //        new CatalogPageMasterMenuItem { Id = 2, Title = "Blah" },
+                //        new CatalogPageMasterMenuItem { Id = 3, Title = "Page 4" },
+                //        new CatalogPageMasterMenuItem { Id = 4, Title = "Page 5" },
+                //    });
             }
-            public async void LoadGenres(int page)
+            public async void LoadGenres()
             {
                 var genreList = await apiService.GetGenres();
-                GenreList = genreList;
+                GenresList = genreList;
             }
 
             #region INotifyPropertyChanged Implementation
