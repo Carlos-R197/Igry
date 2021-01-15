@@ -8,6 +8,7 @@ using Igry.Models;
 using Igry.Services;
 using System.Collections.ObjectModel;
 using Igry.Constants;
+using Prism.Services;
 
 namespace Igry.ViewModels
 {
@@ -31,8 +32,10 @@ namespace Igry.ViewModels
 
         public DelegateCommand FavoriteCommand => favoriteCommand;
 
-        public GameDetailViewModel(IGameRandomizerApiService apiService, GamesByIdApiService gamesByIdApiService, 
+        public GameDetailViewModel(INavigationService navigationService, IPageDialogService dialogService,
+            IGameRandomizerApiService apiService, GamesByIdApiService gamesByIdApiService, 
             Database db, User user, ObservableCollection<Game> favoriteGames)
+            : base (navigationService, dialogService)
         {
             this.apiService = apiService;
             this.gamesByIdApiService = gamesByIdApiService;

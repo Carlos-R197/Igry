@@ -17,8 +17,6 @@ namespace Igry.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         private readonly Database database;
-        private readonly INavigationService navigationService;
-        private readonly IPageDialogService dialogService;
         private readonly DelegateCommand logInCommand;
 
         private User currentUser;
@@ -29,10 +27,9 @@ namespace Igry.ViewModels
 
 
         public LoginViewModel(Database database, INavigationService navigationService, IPageDialogService dialogService, User user)
+            : base(navigationService, dialogService)
         {
             this.database = database;
-            this.navigationService = navigationService;
-            this.dialogService = dialogService;
             logInCommand = new DelegateCommand(LogIn);
             currentUser = user;
         }

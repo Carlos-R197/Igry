@@ -2,6 +2,7 @@
 using Igry.Services;
 using Prism.Commands;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,6 @@ namespace Igry.ViewModels
         public DelegateCommand PreviousPageCommand => new DelegateCommand(PreviousPage);
         public DelegateCommand NextPageCommand => new DelegateCommand(NextPage);
         public DelegateCommand GameDetailPageCommand => new DelegateCommand(GameDetail);
-        private readonly INavigationService navigationService;
         public IList<Game> GameLists { get; set; }
         public Game SelectedGame { get; set; }
 
@@ -44,10 +44,10 @@ namespace Igry.ViewModels
             Page++;
             LoadCatalog(Page);
         }
-        public CatalogViewModel(INavigationService navigationService)
+        public CatalogViewModel(INavigationService navigationService, IPageDialogService dialogService)
+            : base(navigationService, dialogService)
         {
             LoadCatalog(Page);
-            this.navigationService = navigationService;
         }
     }
 }

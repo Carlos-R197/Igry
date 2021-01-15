@@ -13,8 +13,6 @@ namespace Igry.ViewModels
     public class RegisterViewModel : BaseViewModel
     {
         private readonly Database database;
-        private readonly INavigationService navigationService;
-        private readonly IPageDialogService dialogService;
         private readonly DelegateCommand registerCommand;
 
         public Email Email { get; set; } = new Email();
@@ -25,10 +23,9 @@ namespace Igry.ViewModels
         public DelegateCommand RegisterCommand => registerCommand;
 
         public RegisterViewModel(Database database, INavigationService navigationService, IPageDialogService dialogService)
+            : base(navigationService, dialogService)
         {
             this.database = database;
-            this.navigationService = navigationService;
-            this.dialogService = dialogService;
             registerCommand = new DelegateCommand(Register);
         }
 
