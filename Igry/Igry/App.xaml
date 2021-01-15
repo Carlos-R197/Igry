@@ -7,7 +7,6 @@
         <ResourceDictionary>
             <!-- Colors-->
             <Color x:Key="PrimaryColor">#ab47bc</Color>
-            <!-- regular blue: 039be5 light blue: 63ccff dark blue: 006db3 -->
             <Color x:Key="LightPrimaryColor">#df78ef</Color>
             <Color x:Key="DarkPrimaryColor">#790e8b</Color>
             
