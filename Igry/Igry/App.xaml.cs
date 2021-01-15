@@ -52,6 +52,7 @@ namespace Igry
             containerRegistry.RegisterForNavigation<GameDetailPage, GameDetailViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<CatalogPage, CatalogViewModel>();
+            containerRegistry.RegisterForNavigation<SearchPage, SearchViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfileViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomeViewModel>();
             containerRegistry.RegisterForNavigation<RandomPlatformPage, RandomPlatformViewModel>();

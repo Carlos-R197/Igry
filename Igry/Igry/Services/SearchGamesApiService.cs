@@ -16,7 +16,7 @@ namespace Igry.Services
         {
             IList<Game> games = null;
             var client = new HttpClient();
-            string query = $"https://api.rawg.io/api/games?key=9b88a4289b784c19b41aff2c40764c6a&search={userInput}&page_size={amountResults}";
+            string query = $"https://api.rawg.io/api/games?key=9b88a4289b784c19b41aff2c40764c6a&search={userInput}";
             HttpResponseMessage response = await client.GetAsync(query);
             if (response.IsSuccessStatusCode)
             {

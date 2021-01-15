@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Igry.Views.SearchPage">
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="8*,*" RowDefinitions="*,14*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5,0,5,0">
+            <Entry Placeholder="Insert game name" Text="{Binding Text}" Grid.ColumnSpan="1" BackgroundColor="Black" HorizontalOptions="FillAndExpand" TextColor="White" PlaceholderColor="White"/>
+            <Button Text="Search" Grid.Column="1" Command="{Binding SearchGameCommand}"/>
+            <CollectionView x:Name="catalog" ItemsSource="{Binding GameResults}" SelectionMode="Single" Grid.Row="1" Grid.ColumnSpan="2"
+                            SelectedItem="{Binding SelectedGame}" SelectionChangedCommand="{Binding GameDetailPageCommand}"
+                            BackgroundColor="Black">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,2*" BackgroundColor="Black" WidthRequest="100" HeightRequest="80">
+                            <Image Aspect="AspectFill" Source="{Binding BackgroundImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Grid Grid.Column="1" RowDefinitions="*,*" Padding="0,10,0,10">
+                                <Label Text="{Binding Name}" TextColor="White"/>
+                                <Label Text="{Binding Released}" TextColor="White" Grid.Row="1"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
