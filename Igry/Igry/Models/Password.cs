@@ -9,8 +9,8 @@ namespace Igry.Models
     public class Password : BaseModel
     {
         private const int minimumAmountCharacters = 7;
-        private const string specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
+        private readonly Regex specialCharactersExpression = new Regex(@'!\"#$%&\'() * +, -./:;<=>?@[\\]^_`{|}~');
         public string Value { get; set; }
 
 
@@ -28,16 +28,9 @@ namespace Igry.Models
 
         private bool ContainsSpecialCharacter()
         {
-            foreach (char c in Value)
-            {
-                foreach (char sc in specialCharacters)
-                {
-                    if (c == sc)
-                        return true;
-                }
-            }
+            MatchCollection matches = validEmailExpression.Matches(Value);
 
-            return false;
+            return matches.Count > 0;
         }
     }
 }

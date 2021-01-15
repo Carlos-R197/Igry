@@ -123,7 +123,7 @@ namespace Igry.ViewModels
 
         private async void LogOut()
         {
-            bool userChoice = await dialogService.DisplayAlertAsync("Important", "Do you want to log out?", "Yes", "Cancel");
+            bool userChoice = await dialogService.DisplayAlertAsync(Titles.Important, Messages.LogoutQuestion, AlertButtonMessages.Yes, AlertButtonMessages.Cancel);
             if (userChoice == true)
             {
                 FavoriteGames.Clear();

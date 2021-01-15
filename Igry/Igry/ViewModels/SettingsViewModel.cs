@@ -12,7 +12,6 @@ namespace Igry.Views
     class SettingsViewModel : BaseViewModel
     {
         public ICommand GameDetailCommand => new Command(GameDetail);
-        public INavigationService navigationService;
         public ICommand RandomPlatformCommand => new Command(RandomPlatform);
 
         public SettingsViewModel(INavigationService navigationService, IPageDialogService dialogService)

@@ -10,6 +10,8 @@ namespace Igry.Constants
     {
 
         public static string Dismiss = "OK";
+        public static string Yes = "Yes";
+        public static string Cancel = "Cancel";
 
     }
 }

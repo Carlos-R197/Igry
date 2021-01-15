@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace Igry.Models
 {
     public class Email : BaseModel
     {
+        private readonly Regex validEmailExpression = new Regex(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
         public string Value { get; set; }
            
         public bool IsValid()
         {
-            return !HasWhiteSpace() && Value.Contains('@');              
-        }
-
-        private bool HasWhiteSpace()
-        {
-            foreach (char c in Value)
-            {
-                if (c == ' ')
-                    return true;
-            }
-
-            return false;
+            MatchCollection matches = validEmailExpression.Matches(Value);
+            
+            return matches.Count > 0;              
         }
     }
 
