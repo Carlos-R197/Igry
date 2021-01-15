@@ -1,4 +1,5 @@
-﻿using Igry.Models;
+﻿using Igry.Constants;
+using Igry.Models;
 using Igry.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -22,6 +23,12 @@ namespace Igry.ViewModels
 
         public async void LoadCatalog(int page)
         {
+            if(!ThereIsInternetAccess())
+            {
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.NoInternetAccess, AlertButtonMessages.Dismiss);
+                return;
+            }
+
             var gameList = await apiService.GetPageAsync(page);
             GameLists = gameList;
         }

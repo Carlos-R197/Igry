@@ -8,6 +8,8 @@ namespace Igry.Constants
 {
     public static class ErrorMessages
     {
+        public static string NoInternetAccess = "There's no internet connection, check and try again.";
+
         // Register Page 
         public static string ExistingEmail = "This email is already taken by another user.";
         public static string EmptyEntries = "All the entries must be filled.";

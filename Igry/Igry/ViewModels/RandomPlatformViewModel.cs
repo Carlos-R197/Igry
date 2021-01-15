@@ -1,4 +1,5 @@
-﻿using Igry.Models;
+﻿using Igry.Constants;
+using Igry.Models;
 using Igry.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -30,6 +31,12 @@ namespace Igry.ViewModels
 
         async void GetRandomPlatform()
         {
+            if (!ThereIsInternetAccess())
+            {
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.NoInternetAccess, AlertButtonMessages.Dismiss);
+                return;
+            }
+
             Platform = await apiService.GetRandomPlatformAsync();
         }
     }
