@@ -37,12 +37,12 @@ namespace Igry.ViewModels
             if (await EntriesMeetRequirementsAsync())
             {
                 if (await database.IsEmailTaken(Email.Value))
-                    await dialogService.DisplayAlertAsync("Error", ErrorMessages.ExistingEmail, "OK");
+                    await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.ExistingEmail, AlertButtonMessages.Dismiss);
                 else
                 {
                     var user = new User(Email.Value, Name, Password.Value);
                     var savingUser = database.SaveUserAsync(user);
-                    await dialogService.DisplayAlertAsync("Registration successful", SuccessMessages.RegistrationCompleted, "OK");
+                    await dialogService.DisplayAlertAsync(Titles.RegistrationCompleted, SuccessMessages.RegistrationCompleted, AlertButtonMessages.Dismiss);
                     await savingUser;
                     await navigationService.GoBackAsync();
                 }
@@ -54,13 +54,13 @@ namespace Igry.ViewModels
             bool EntriesMeetRequirements = false;
 
             if (AreEntriesEmpty())
-                await dialogService.DisplayAlertAsync("Error", ErrorMessages.EmptyEntries, "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.EmptyEntries, AlertButtonMessages.Dismiss);
             else if (Password.Value != ConfirmPassword)
-                await dialogService.DisplayAlertAsync("Error", ErrorMessages.PasswordsDontMatch, "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.PasswordsDontMatch, AlertButtonMessages.Dismiss);
             else if (!Password.IsValid())
-                await dialogService.DisplayAlertAsync("Error", ErrorMessages.InvalidPassword, "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidPassword, AlertButtonMessages.Dismiss);
             else if (!Email.IsValid())
-                await dialogService.DisplayAlertAsync("Error", ErrorMessages.InvalidEmail, "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidEmail, AlertButtonMessages.Dismiss);
             else
                 EntriesMeetRequirements = true;
 

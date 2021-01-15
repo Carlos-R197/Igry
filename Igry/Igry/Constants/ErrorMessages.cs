@@ -17,5 +17,9 @@ namespace Igry.Constants
 
         // Login Page 
         public static string InvalidCredentials = "Invalid Email or Password, check and try again.";
+
+        // GameDetail Page
+        public static string NoDataForGame = "No platform data available for this game.";
+        
     }
 }

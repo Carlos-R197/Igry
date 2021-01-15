@@ -52,7 +52,7 @@ namespace Igry.ViewModels
                     await navigationService.NavigateAsync($"/{PageName.HomeTabbedPage}");
                 }
                 else
-                    await dialogService.DisplayAlertAsync("Error", ErrorMessages.InvalidCredentials, "OK");
+                    await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidCredentials, AlertButtonMessages.Dismiss);
             }
         }
 
@@ -61,11 +61,11 @@ namespace Igry.ViewModels
             bool entriesMeetRequirements = false;
 
             if (string.IsNullOrWhiteSpace(Password.Value) || string.IsNullOrWhiteSpace(Email.Value))
-                await dialogService.DisplayAlertAsync("Error", ErrorMessages.EmptyEntries, "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.EmptyEntries, AlertButtonMessages.Dismiss);
             else if (!Email.IsValid())
-                await dialogService.DisplayAlertAsync("Error", ErrorMessages.InvalidEmail, "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidEmail, AlertButtonMessages.Dismiss);
             else if (!Password.IsValid())
-                await dialogService.DisplayAlertAsync("Error", ErrorMessages.InvalidPassword, "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidPassword, AlertButtonMessages.Dismiss);
             else
                 entriesMeetRequirements = true;
 

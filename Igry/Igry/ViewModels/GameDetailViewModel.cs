@@ -7,6 +7,7 @@ using System.Linq;
 using Igry.Models;
 using Igry.Services;
 using System.Collections.ObjectModel;
+using Igry.Constants;
 
 namespace Igry.ViewModels
 {
@@ -110,7 +111,7 @@ namespace Igry.ViewModels
                     CurrentGamePlatforms += ", " + CurrentGame.Platforms[i].PlatformData.Name;
             }
             else
-                CurrentGamePlatforms = "No platform data available for this game";
+                CurrentGamePlatforms = ErrorMessages.NoDataForGame;
         }
 
 

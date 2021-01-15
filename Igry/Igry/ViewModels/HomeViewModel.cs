@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Igry.Constants;
 using Igry.Models;
 using Igry.Services;
 using Prism;
@@ -83,7 +84,7 @@ namespace Igry.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Game", SelectedFavoriteGame);
-            navigationService.NavigateAsync(Constants.GameDetailPage, navigationParams);
+            navigationService.NavigateAsync(PageName.GameDetailPage, navigationParams);
         }
 
         private void ShowSelectedRecommendedGameDetails()
@@ -93,7 +94,7 @@ namespace Igry.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Game", SelectedRecommendedGame);
-            navigationService.NavigateAsync(Constants.GameDetailPage, navigationParams);
+            navigationService.NavigateAsync(PageName.GameDetailPage, navigationParams);
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
