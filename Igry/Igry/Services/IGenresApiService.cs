@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Igry.Services
 {
-    public interface IGetGenresApiService
+    public interface IGenresApiService
     {
         Task<IList<Genre>> GetGenres();
     }

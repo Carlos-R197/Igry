@@ -21,7 +21,7 @@ namespace Igry.ViewModels
         public IList<Game> GameLists { get; set; }
         public Game SelectedGame { get; set; }
 
-        public async void LoadCatalog(int page)
+        public async void LoadCatalog(int page, IList<Genre> genres)
         {
             if(!ThereIsInternetAccess())
             {
@@ -29,7 +29,7 @@ namespace Igry.ViewModels
                 return;
             }
 
-            var gameList = await apiService.GetPageAsync(page);
+            var gameList = await apiService.GetPageAsync(page, genres);
             GameLists = gameList;
         }
         public async void GameDetail()
@@ -43,18 +43,43 @@ namespace Igry.ViewModels
             if (Page > 1)
             {
                 Page--;
-                LoadCatalog(Page);
+                LoadCatalog(Page, selectedGenres);
             }
         }
         public void NextPage()
         {
             Page++;
-            LoadCatalog(Page);
+            LoadCatalog(Page, selectedGenres);
         }
         public CatalogViewModel(INavigationService navigationService, IPageDialogService dialogService)
             : base(navigationService, dialogService)
         {
-            LoadCatalog(Page);
+            LoadCatalog(Page, GenresList);
+            LoadGenres();
+        }
+
+        //MASTER VIEW MODEL
+        public IList<Genre> GenresList { get; set; }
+        IGenresApiService apiGenreService = new GenresApiService();
+        public DelegateCommand FilterCommand => new DelegateCommand(Filter);
+        IList<Genre> selectedGenres = new ObservableCollection<Genre>();
+        public IList<Genre> SelectedGenres
+        {
+            set
+            {
+                selectedGenres = value;
+            }
+            get => selectedGenres;
+        }
+
+        public async void LoadGenres()
+        {
+            var genreList = await apiGenreService.GetGenres();
+            GenresList = genreList;
+        }
+        public void Filter()
+        {
+            LoadCatalog(Page, selectedGenres);
         }
     }
 }
