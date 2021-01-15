@@ -6,6 +6,7 @@ using Prism.Navigation;
 using Prism.Services;
 using Igry.Models;
 using System.Threading.Tasks;
+using Igry.Constants;
 
 namespace Igry.ViewModels
 {
@@ -36,12 +37,12 @@ namespace Igry.ViewModels
             if (await EntriesMeetRequirementsAsync())
             {
                 if (await database.IsEmailTaken(Email.Value))
-                    await dialogService.DisplayAlertAsync("Error", "The email is alredy taken by another user", "OK");
+                    await dialogService.DisplayAlertAsync("Error", ErrorMessages.ExistingEmail, "OK");
                 else
                 {
                     var user = new User(Email.Value, Name, Password.Value);
                     var savingUser = database.SaveUserAsync(user);
-                    await dialogService.DisplayAlertAsync("Registration successful", "Your account has been created successfully", "OK");
+                    await dialogService.DisplayAlertAsync("Registration successful", SuccessMessages.RegistrationCompleted, "OK");
                     await savingUser;
                     await navigationService.GoBackAsync();
                 }
@@ -53,13 +54,13 @@ namespace Igry.ViewModels
             bool EntriesMeetRequirements = false;
 
             if (AreEntriesEmpty())
-                await dialogService.DisplayAlertAsync("Error", "All the entries must be filled", "OK");
+                await dialogService.DisplayAlertAsync("Error", ErrorMessages.EmptyEntries, "OK");
             else if (Password.Value != ConfirmPassword)
-                await dialogService.DisplayAlertAsync("Error", "Password cnad confirm password must be the same", "OK");
+                await dialogService.DisplayAlertAsync("Error", ErrorMessages.PasswordsDontMatch, "OK");
             else if (!Password.IsValid())
-                await dialogService.DisplayAlertAsync("Error", "Password isn't valid", "OK");
+                await dialogService.DisplayAlertAsync("Error", ErrorMessages.InvalidPassword, "OK");
             else if (!Email.IsValid())
-                await dialogService.DisplayAlertAsync("Error", "Email isn't valid", "OK");
+                await dialogService.DisplayAlertAsync("Error", ErrorMessages.InvalidEmail, "OK");
             else
                 EntriesMeetRequirements = true;
 
