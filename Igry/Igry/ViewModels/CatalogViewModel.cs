@@ -43,13 +43,13 @@ namespace Igry.ViewModels
             if (Page > 1)
             {
                 Page--;
-                LoadCatalog(Page, selectedGenres);
+                LoadCatalog(Page, FilteredGenres());
             }
         }
         public void NextPage()
         {
             Page++;
-            LoadCatalog(Page, selectedGenres);
+            LoadCatalog(Page, FilteredGenres());
         }
         public CatalogViewModel(INavigationService navigationService, IPageDialogService dialogService)
             : base(navigationService, dialogService)
@@ -62,8 +62,8 @@ namespace Igry.ViewModels
         public IList<Genre> GenresList { get; set; }
         IGenresApiService apiGenreService = new GenresApiService();
         public DelegateCommand FilterCommand => new DelegateCommand(Filter);
-        IList<Genre> selectedGenres = new ObservableCollection<Genre>();
-        public IList<Genre> SelectedGenres
+        IList<object> selectedGenres = new ObservableCollection<object>();
+        public IList<object> SelectedGenres
         {
             set
             {
@@ -79,7 +79,16 @@ namespace Igry.ViewModels
         }
         public void Filter()
         {
-            LoadCatalog(Page, selectedGenres);
+            LoadCatalog(Page, FilteredGenres());
+        }
+        public IList<Genre> FilteredGenres()
+        {
+            IList<Genre> genresloaded = new List<Genre>();
+            foreach (object genero in selectedGenres)
+            {
+                genresloaded.Add((Genre)genero);
+            }
+            return genresloaded;
         }
     }
 }
