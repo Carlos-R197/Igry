@@ -24,7 +24,8 @@
                     Placeholder="Email" 
                     Keyboard="Email" 
                     Text="{Binding Email.Value}" 
-                    Margin="20, 0, 20, 0"/>
+                    Margin="20, 0, 20, 0"
+                    TextColor="Black"/>
                 
                 <controls:StandardEntry 
                     Padding="13"
@@ -36,7 +37,8 @@
                     Placeholder="Password"
                     IsPassword="True"
                     Text="{Binding Password.Value}"
-                    Margin="20, 0, 20, 0"/>
+                    Margin="20, 0, 20, 0"
+                    TextColor="Black"/>
                 
                 <Button 
                     Text="Login" 

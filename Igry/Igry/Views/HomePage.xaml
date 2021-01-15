@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
         <Grid RowDefinitions="*, 4*, *, 4*, *, 4*" RowSpacing="0" VerticalOptions="StartAndExpand" 
-              HorizontalOptions="FillAndExpand" BackgroundColor="#e1f5fe" Padding="10, 10, 10, 10">
+              HorizontalOptions="FillAndExpand" Padding="10, 10, 10, 10">
 
             <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Down" Command="{Binding LogOutCommand}"/>

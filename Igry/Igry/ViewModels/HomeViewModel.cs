@@ -124,7 +124,7 @@ namespace Igry.ViewModels
         private async void LogOut()
         {
             bool userChoice = await dialogService.DisplayAlertAsync(Titles.Important, 
-                SuccessMessages.LogOut, AlertButtonMessages.Yes, AlertButtonMessages.Cancel);
+                SuccessMessages.LogOut, AlertButtonMessages.Accept, AlertButtonMessages.Cancel);
 
             if (userChoice == true)
             {
