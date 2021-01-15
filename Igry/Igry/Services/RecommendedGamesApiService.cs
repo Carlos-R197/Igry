@@ -16,7 +16,7 @@ namespace Igry.Services
             var client = new HttpClient();
             var firstDay = DateTime.Today.AddDays(-365).ToString("yyyy-MM-dd");
             var lastDay = DateTime.Today.ToString("yyyy-MM-dd");
-            string query = $"https://api.rawg.io/api/games?key=9b88a4289b784c19b41aff2c40764c6a&page_size=20&ordering=metacritic&dates={firstDay},{lastDay}";
+            string query = $"https://api.rawg.io/api/games?key=9b88a4289b784c19b41aff2c40764c6a&page_size=20&ordering=-metacritic&dates={firstDay},{lastDay}";
             HttpResponseMessage response = await client.GetAsync(query);
             if (response.IsSuccessStatusCode)
             {

@@ -14,7 +14,7 @@ namespace Igry.Services
         {
             Game game = null;
             var client = new HttpClient();
-            var firstDayMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).ToString("yyyy-MM-dd");
+            var firstDayMonth = DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd");
             var today = DateTime.Now.ToString("yyyy-MM-dd");
             //The query is expected to return the game with the highest metacritic score of the current month.
             string query = $"https://api.rawg.io/api/games?key=9b88a4289b784c19b41aff2c40764c6a&dates={firstDayMonth},{today}&ordering=-metacritic&page_size=1";

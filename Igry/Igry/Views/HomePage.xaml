@@ -22,7 +22,7 @@
             <Label Text="{Binding GameOfTheWeek.Name}" Grid.Row="0" 
                    VerticalOptions="End" HorizontalOptions="Center"/>
 
-            <Label Text="Your Favorite Games" Grid.Row="1" HorizontalOptions="Start" Margin="10, 0, 0, 0"/>
+            <Label Text="Your Favorite Games" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 0, 0, 0"/>
             <CollectionView ItemsSource="{Binding FavoriteGames}" SelectedItem="{Binding SelectedFavoriteGame}" SelectionChangedCommand="{Binding SelectedGameCommand}" 
                             SelectionMode="Single" Grid.Row="2" Margin="10, 0, 0, 0">
                 <CollectionView.ItemsLayout>
@@ -44,7 +44,7 @@
                 
             </CollectionView>
 
-            <Label Text="Recommendations" Grid.Row="3" HorizontalOptions="Start" Margin="10, 0, 0, 0" />
+            <Label Text="Recommended Games" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 0, 0, 0" />
             <CollectionView ItemsSource="{Binding RecommendedGames}" SelectedItem="{Binding SelectedRecommendedGame}" SelectionChangedCommand="{Binding RecommendedGameSelectedCommand}" 
                             SelectionMode="Single" Grid.Row="4" Margin="10, 0, 0, 0">
                 <CollectionView.ItemsLayout>
