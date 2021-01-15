@@ -42,7 +42,7 @@
                     Text="Login" 
                     TextColor="White"
                     FontFamily="Gotham"
-                    BackgroundColor="#039be5" 
+                    BackgroundColor="{StaticResource LightPrimaryColor}" 
                     Command="{Binding LogInCommand}" 
                     Margin="0, 20, 0, 20" 
                     HorizontalOptions="Center" 

@@ -60,7 +60,7 @@
                 <Button 
                 Text="Register" 
                 TextColor="White" 
-                BackgroundColor="#039be5" 
+                BackgroundColor="{StaticResource LightPrimaryColor}" 
                 Command="{Binding RegisterCommand}" 
                 Margin="20, 0, 20, 0"/>
             </StackLayout>

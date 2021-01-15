@@ -6,9 +6,10 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
             <!-- Colors-->
-            <Color x:Key="PrimaryColor">#039be5</Color>
-            <Color x:Key="LightPrimaryColor">#63ccff</Color>
-            <Color x:Key="DarkPrimaryColor">#006db3</Color>
+            <Color x:Key="PrimaryColor">#ab47bc</Color>
+            <!-- regular blue: 039be5 light blue: 63ccff dark blue: 006db3 -->
+            <Color x:Key="LightPrimaryColor">#df78ef</Color>
+            <Color x:Key="DarkPrimaryColor">#790e8b</Color>
             
             <!--Implicit Styles -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
@@ -23,6 +24,8 @@
 
             <Style TargetType="Entry">
                 <Setter Property="IsTextPredictionEnabled" Value="False"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontFamily" Value="Gotham"/>
             </Style>
             <!-- Explicit Styles -->
             <Style x:Key="TitleLabel" TargetType="Label">
