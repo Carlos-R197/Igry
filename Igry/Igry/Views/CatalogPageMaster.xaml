@@ -4,7 +4,7 @@
              x:Class="Igry.Views.CatalogPageMaster"
              Title="Master">
     <StackLayout>
-        <CollectionView x:Name="Filters" ItemsSource="{Binding GenresList}" SelectionMode="Multiple" SelectedItems="{Binding SelectedGenres, Mode=TwoWay}" SelectionChangedCommand="{Binding AddGenreToListCommand}">
+        <CollectionView x:Name="Filters" ItemsSource="{Binding GenresList}" SelectionMode="Multiple" SelectedItems="{Binding SelectedGenres}" SelectionChangedCommand="{Binding AddGenreToListCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">

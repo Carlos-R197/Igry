@@ -22,6 +22,7 @@
 
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="#000000"/>
+                <Setter Property="FontFamily" Value="Gotham" />
             </Style>
 
             <Style TargetType="Entry">
@@ -30,10 +31,12 @@
             <!-- Explicit Styles -->
             <Style x:Key="WhiteText" TargetType="Label">
                 <Setter Property="TextColor" Value="#FFFFFF"></Setter>
+                <Setter Property="FontFamily" Value="Gotham" />
             </Style>
 
             <Style x:Key="BlueText" TargetType="Label">
                 <Setter Property="TextColor" Value="#006db3"></Setter>
+                <Setter Property="FontFamily" Value="Gotham" />
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

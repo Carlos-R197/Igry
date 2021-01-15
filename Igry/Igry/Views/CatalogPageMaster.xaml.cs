@@ -33,14 +33,22 @@ namespace Igry.Views
 
             public ObservableCollection<CatalogPageMasterMenuItem> MenuItems { get; set; }
             public IList<Genre> GenresList { get; set; }
-            public IList<Genre> SelectedGenres { get; set; }
             public DelegateCommand FilterCommand => new DelegateCommand(Filter);
             public DelegateCommand AddGenreToListCommand => new DelegateCommand(AddGenreToList);
 
+            IList<object> selectedGenres = new ObservableCollection<object>();
+            public IList<object> SelectedGenres
+            {
+                set
+                {
+                    selectedGenres = value;
+                }
+                get => selectedGenres;
+            }
+
             public CatalogPageMasterViewModel()
             {
-               LoadGenres();
-                SelectedGenres = new List<Genre>();
+                LoadGenres();
             }
             public async void LoadGenres()
             {

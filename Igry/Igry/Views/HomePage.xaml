@@ -9,6 +9,7 @@
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="Gotham"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
