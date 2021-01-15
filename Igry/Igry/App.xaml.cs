@@ -40,11 +40,13 @@ namespace Igry
             containerRegistry.RegisterInstance(user);
             containerRegistry.RegisterInstance(favoriteGames);
 
-            containerRegistry.Register<IGameRandomizerApiService, GameRandomizerApiService>();
-            containerRegistry.Register<IPlatformRandomizerApiService, PlatformRandomizerApiService>();
             containerRegistry.Register<GameOfTheMonthApiService>();
             containerRegistry.Register<GamesByIdApiService>();
             containerRegistry.Register<RecommendedGamesApiService>();
+            containerRegistry.Register<IGenresApiService, GenresApiService>();
+            containerRegistry.Register<SearchGamesApiService>();
+            containerRegistry.Register<IGameCatalogApiService, GameCatalogApiService>();
+            containerRegistry.Register<OpenUrlService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginViewModel>();
@@ -52,9 +54,7 @@ namespace Igry
             containerRegistry.RegisterForNavigation<GameDetailPage, GameDetailViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<CatalogPage, CatalogViewModel>();
-            containerRegistry.RegisterForNavigation<ProfilePage, ProfileViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomeViewModel>();
-            containerRegistry.RegisterForNavigation<RandomPlatformPage, RandomPlatformViewModel>();
             containerRegistry.RegisterForNavigation<HomeTabbedPage>();
         }
 

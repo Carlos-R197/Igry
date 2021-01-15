@@ -12,6 +12,5 @@ namespace Igry.Constants
         public static string RegistrationCompleted = "Registration successful.";
         public static string Error = "Error";
         public static string Important = "Important";
-
     }
 }

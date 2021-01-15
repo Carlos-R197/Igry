@@ -123,11 +123,13 @@ namespace Igry.ViewModels
 
         private async void LogOut()
         {
-            bool userChoice = await dialogService.DisplayAlertAsync(Titles.Important, Messages.LogoutQuestion, AlertButtonMessages.Yes, AlertButtonMessages.Cancel);
+            bool userChoice = await dialogService.DisplayAlertAsync(Titles.Important, 
+                SuccessMessages.LogOut, AlertButtonMessages.Accept, AlertButtonMessages.Cancel);
+
             if (userChoice == true)
             {
                 FavoriteGames.Clear();
-                await navigationService.NavigateAsync($"/{PageName.LoginPage}");
+                await navigationService.NavigateAsync($"/{PageName.NavigationPage}/{PageName.LoginPage}");
             }
         }
     }

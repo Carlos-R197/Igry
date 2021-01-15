@@ -13,15 +13,25 @@ namespace Igry.ViewModels
 {
     class CatalogViewModel : BaseViewModel
     {
+        private readonly IGameCatalogApiService catalogApiService;
+
         public int Page { get; set; } = 1;
-        IGameCatalogApiService apiService = new GameCatalogApiService();
         public DelegateCommand PreviousPageCommand => new DelegateCommand(PreviousPage);
         public DelegateCommand NextPageCommand => new DelegateCommand(NextPage);
         public DelegateCommand GameDetailPageCommand => new DelegateCommand(GameDetail);
         public IList<Game> GameLists { get; set; }
         public Game SelectedGame { get; set; }
 
-        public async void LoadCatalog(int page, IList<Genre> genres)
+        public CatalogViewModel(INavigationService navigationService, IPageDialogService dialogService, 
+            IGameCatalogApiService gameCatalogApiService, GenresApiService genresService) : base(navigationService, dialogService)
+        {
+            catalogApiService = gameCatalogApiService;
+            genreApiService = genresService;
+            LoadCatalog(GenresList);
+            LoadGenres();
+        }
+
+        public async void LoadCatalog(IList<Genre> genres)
         {
             if(!ThereIsInternetAccess())
             {
@@ -29,40 +39,34 @@ namespace Igry.ViewModels
                 return;
             }
 
-            var gameList = await apiService.GetPageAsync(page, genres);
+            var gameList = await catalogApiService.GetPageAsync(Page, genres);
             GameLists = gameList;
         }
         public async void GameDetail()
         {
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("Game", SelectedGame);
-            await navigationService.NavigateAsync("GameDetailPage", navigationParams);
+            var navParameters = new NavigationParameters();
+            navParameters.Add("Game", SelectedGame);
+            await navigationService.NavigateAsync("GameDetailPage", navParameters);
         }
         public void PreviousPage()
         {
             if (Page > 1)
             {
                 Page--;
-                LoadCatalog(Page, FilteredGenres());
+                LoadCatalog(FilteredGenres());
             }
         }
         public void NextPage()
         {
             Page++;
-            LoadCatalog(Page, FilteredGenres());
-        }
-        public CatalogViewModel(INavigationService navigationService, IPageDialogService dialogService)
-            : base(navigationService, dialogService)
-        {
-            LoadCatalog(Page, GenresList);
-            LoadGenres();
+            LoadCatalog(FilteredGenres());
         }
 
         //MASTER VIEW MODEL
+        private readonly IGenresApiService genreApiService;
+        private IList<object> selectedGenres = new ObservableCollection<object>();
+
         public IList<Genre> GenresList { get; set; }
-        IGenresApiService apiGenreService = new GenresApiService();
-        public DelegateCommand FilterCommand => new DelegateCommand(Filter);
-        IList<object> selectedGenres = new ObservableCollection<object>();
         public IList<object> SelectedGenres
         {
             set
@@ -72,14 +76,16 @@ namespace Igry.ViewModels
             get => selectedGenres;
         }
 
+        public DelegateCommand FilterCommand => new DelegateCommand(Filter);
+
         public async void LoadGenres()
         {
-            var genreList = await apiGenreService.GetGenres();
+            var genreList = await genreApiService.GetGenres();
             GenresList = genreList;
         }
         public void Filter()
         {
-            LoadCatalog(Page, FilteredGenres());
+            LoadCatalog(FilteredGenres());
         }
         public IList<Genre> FilteredGenres()
         {

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Igry.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RandomPlatformPage : ContentPage
+    public partial class SearchPage : ContentPage
     {
-        public RandomPlatformPage()
+        public SearchPage()
         {
             InitializeComponent();
         }
