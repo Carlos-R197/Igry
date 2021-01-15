@@ -6,9 +6,14 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <Grid RowDefinitions="*, 3*, 6*" Padding="20, 20, 20, 20">
-            <Label Text="{Binding CurrentGame.Name}" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="End" />
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Right" Command="{Binding NavigateHomeCommand}"/>
+            </Grid.GestureRecognizers>
+            
+            <Label Text="{Binding CurrentGame.Name}" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="End" 
+                   Style="{StaticResource TitleLabel}"/>
             <ImageButton Source="{Binding FavoriteImagePath}" Command="{Binding FavoriteCommand}" 
-                         Grid.Row="0" HorizontalOptions="End"  BackgroundColor="White"/>
+                         Grid.Row="0" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="White" WidthRequest="30" HeightRequest="30"/>
 
             <Image Source="{Binding CurrentGame.BackgroundImage}" Grid.Row="1" Grid.Column="0" Aspect="AspectFill"/>
 

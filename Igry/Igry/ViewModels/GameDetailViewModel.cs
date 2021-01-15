@@ -19,6 +19,7 @@ namespace Igry.ViewModels
 
         private readonly GamesByIdApiService gamesByIdApiService;
         private readonly DelegateCommand favoriteCommand;
+        private readonly DelegateCommand navigateHomeCommand;
         private readonly Database database;
         private readonly User currentUser;
         private readonly ObservableCollection<Game> favoriteGames;
@@ -31,6 +32,7 @@ namespace Igry.ViewModels
         public User CurrentUser => currentUser;
 
         public DelegateCommand FavoriteCommand => favoriteCommand;
+        public DelegateCommand NavigateHomeCommand => navigateHomeCommand;
 
         public GameDetailViewModel(INavigationService navService, IPageDialogService dialogService,
             GamesByIdApiService gamesByIdApiService, Database db, 
@@ -38,6 +40,7 @@ namespace Igry.ViewModels
         {
             this.gamesByIdApiService = gamesByIdApiService;
             favoriteCommand = new DelegateCommand(ManageGameFavoriteStatus);
+            navigateHomeCommand = new DelegateCommand(GoHome);
             database = db;
             currentUser = user;
             this.favoriteGames = favoriteGames;
@@ -114,6 +117,11 @@ namespace Igry.ViewModels
                 FavoriteImagePath = isFavoriteImage;
             else
                 FavoriteImagePath = isNotFavoriteImage;
+        }
+
+        private void GoHome()
+        {
+            navigationService.GoBackAsync();
         }
     }
 }

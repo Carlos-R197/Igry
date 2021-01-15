@@ -95,7 +95,7 @@ namespace Igry.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Game", SelectedFavoriteGame);
-            navigationService.NavigateAsync(PageName.GameDetailPage, navigationParams);
+            navigationService.NavigateAsync(PageName.GameDetailPage, navigationParams, useModalNavigation: true, false);
         }
 
         private void ShowSelectedRecommendedGameDetails()
@@ -105,7 +105,7 @@ namespace Igry.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Game", SelectedRecommendedGame);
-            navigationService.NavigateAsync(PageName.GameDetailPage, navigationParams);
+            navigationService.NavigateAsync(PageName.GameDetailPage, navigationParams, useModalNavigation: true, false);
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)

@@ -9,34 +9,32 @@
             <Color x:Key="PrimaryColor">#039be5</Color>
             <Color x:Key="LightPrimaryColor">#63ccff</Color>
             <Color x:Key="DarkPrimaryColor">#006db3</Color>
-
-            <Color x:Key="SecondaryColor">#a86510</Color>
-            <Color x:Key="LightSecondaryColor">#de9341</Color>
-            <Color x:Key="DarkSecondaryColor">#743a00</Color>
-
-            <Color x:Key="TextColor">#006db3</Color>
+            
             <!--Implicit Styles -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource DarkPrimaryColor}"/>
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="#000000"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
                 <Setter Property="FontFamily" Value="Gotham" />
+                <Setter Property="FontSize"  Value="Small"/>
             </Style>
 
             <Style TargetType="Entry">
                 <Setter Property="IsTextPredictionEnabled" Value="False"/>
             </Style>
             <!-- Explicit Styles -->
-            <Style x:Key="WhiteText" TargetType="Label">
-                <Setter Property="TextColor" Value="#FFFFFF"></Setter>
+            <Style x:Key="TitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkPrimaryColor}"></Setter>
                 <Setter Property="FontFamily" Value="Gotham" />
+                <Setter Property="FontSize" Value="Title"/>
             </Style>
 
-            <Style x:Key="BlueText" TargetType="Label">
-                <Setter Property="TextColor" Value="#006db3"></Setter>
-                <Setter Property="FontFamily" Value="Gotham" />
+            <Style x:Key="RegularLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"></Setter>
+                <Setter Property="FontFamily" Value="Gotham"/>
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

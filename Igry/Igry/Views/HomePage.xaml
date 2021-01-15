@@ -4,7 +4,8 @@
              xmlns:views="clr-namespace:Igry.Views"
              x:Class="Igry.Views.HomePage"
              Title="Home"
-             BackgroundColor="Black">
+             BackgroundColor="White">
+    <!--
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -13,19 +14,19 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+    -->
     <ContentPage.Content>
-        <Grid RowDefinitions="3*, *, 3*, *, 3*" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
-            <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Grid.Row="0" Margin="10, 10, 10, 0"
-                   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
-            <Label Text="Game of the month" Grid.Row="0" 
-                   VerticalOptions="Center" HorizontalOptions="Center"/>
-            <Label Text="{Binding GameOfTheWeek.Name}" Grid.Row="0" 
-                   VerticalOptions="End" HorizontalOptions="Center"/>
+        <Grid RowDefinitions="*, 4*, *, *, 4*, *, 4*" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 
-            <Label Text="Your Favorite Games" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 0, 0, 0"/>
+            <Label Text="Game of the month" Grid.Row="0" Style="{StaticResource TitleLabel}" HorizontalOptions="Center" VerticalOptions="End"/>
+            <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Margin="10, 10, 10, 0" Grid.Row="1"
+                   Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <Label Text="{Binding GameOfTheWeek.Name}" Style="{StaticResource TitleLabel}" Grid.Row="2"
+                        HorizontalOptions="Center" VerticalOptions="Start"/>
+
+            <Label Text="Your Favorite Games" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 0, 0, 0"/>
             <CollectionView ItemsSource="{Binding FavoriteGames}" SelectedItem="{Binding SelectedFavoriteGame}" SelectionChangedCommand="{Binding SelectedGameCommand}" 
-                            SelectionMode="Single" Grid.Row="2" Margin="10, 0, 0, 0">
+                            SelectionMode="Single" Grid.Row="4" Margin="10, 0, 0, 0">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="10" VerticalItemSpacing="10"></GridItemsLayout>
                 </CollectionView.ItemsLayout>
@@ -45,9 +46,9 @@
                 
             </CollectionView>
 
-            <Label Text="Recommended Games" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 0, 0, 0" />
+            <Label Text="Recommended Games" Grid.Row="5" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 0, 0, 0" />
             <CollectionView ItemsSource="{Binding RecommendedGames}" SelectedItem="{Binding SelectedRecommendedGame}" SelectionChangedCommand="{Binding RecommendedGameSelectedCommand}" 
-                            SelectionMode="Single" Grid.Row="4" Margin="10, 0, 0, 0">
+                            SelectionMode="Single" Grid.Row="6" Margin="10, 0, 0, 0">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="10"></GridItemsLayout>
                 </CollectionView.ItemsLayout>
