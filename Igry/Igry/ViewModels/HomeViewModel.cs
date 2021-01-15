@@ -20,6 +20,7 @@ namespace Igry.ViewModels
         private readonly RecommendedGamesApiService recommendedGamesApiService;
         private readonly DelegateCommand selectedGameCommand;
         private readonly DelegateCommand recommendedGameSelectedCommand;
+        private readonly DelegateCommand logOutCommand;
         private readonly User currentUser;
 
         public Game GameOfTheWeek { get; private set; }
@@ -29,6 +30,7 @@ namespace Igry.ViewModels
         public Game SelectedRecommendedGame { get; set; }
         public DelegateCommand SelectedGameCommand => selectedGameCommand;
         public DelegateCommand RecommendedGameSelectedCommand => recommendedGameSelectedCommand;
+        public DelegateCommand LogOutCommand => logOutCommand;
 
 
         public HomeViewModel(INavigationService navigationService, IPageDialogService dialogService, GameOfTheMonthApiService getGameApiService, 
@@ -39,11 +41,11 @@ namespace Igry.ViewModels
             this.gamesApiService = gamesApiService;
             this.recommendedGamesApiService = recommendedGames;
 
-
             this.selectedGameCommand = new DelegateCommand(ShowSelectedFavoriteGameDetails);
             this.recommendedGameSelectedCommand = new DelegateCommand(ShowSelectedRecommendedGameDetails);
-            this.currentUser = user;
+            this.logOutCommand = new DelegateCommand(LogOut);
 
+            this.currentUser = user;
             this.FavoriteGames = favoriteGames;
             this.RecommendedGames = new ObservableCollection<Game>();
         }
@@ -117,6 +119,16 @@ namespace Igry.ViewModels
         {
             SelectedFavoriteGame = null;
             SelectedRecommendedGame = null;
+        }
+
+        private async void LogOut()
+        {
+            bool userChoice = await dialogService.DisplayAlertAsync("Important", "Do you want to log out?", "Yes", "Cancel");
+            if (userChoice == true)
+            {
+                FavoriteGames.Clear();
+                await navigationService.NavigateAsync($"/{PageName.LoginPage}");
+            }
         }
     }
 }
