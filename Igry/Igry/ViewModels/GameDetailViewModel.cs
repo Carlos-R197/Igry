@@ -13,9 +13,8 @@ namespace Igry.ViewModels
     public class GameDetailViewModel : BaseViewModel, INavigatedAware
     {
         private const string isFavoriteImage = "FilledStar.png";
-        private const string isNotFavoriteImage = "EmptyStart.png";
+        private const string isNotFavoriteImage = "EmptyStar.png";
 
-        private readonly IGameRandomizerApiService apiService;
         private readonly GamesByIdApiService gamesByIdApiService;
         private readonly DelegateCommand favoriteCommand;
         private readonly Database database;
@@ -23,6 +22,7 @@ namespace Igry.ViewModels
         private readonly ObservableCollection<Game> favoriteGames;
 
         public Game CurrentGame { get; set; }
+        public GameDetails CurrentGameDetails { get; set; }
         public string CurrentGameGenres { get; set; }
         public string CurrentGamePlatforms { get; set; }
         public string FavoriteImagePath { get; set; }
@@ -30,10 +30,9 @@ namespace Igry.ViewModels
 
         public DelegateCommand FavoriteCommand => favoriteCommand;
 
-        public GameDetailViewModel(IGameRandomizerApiService apiService, GamesByIdApiService gamesByIdApiService, 
-            Database db, User user, ObservableCollection<Game> favoriteGames)
+        public GameDetailViewModel(GamesByIdApiService gamesByIdApiService, Database db, 
+            User user, ObservableCollection<Game> favoriteGames)
         {
-            this.apiService = apiService;
             this.gamesByIdApiService = gamesByIdApiService;
             favoriteCommand = new DelegateCommand(ManageGameFavoriteStatus);
             database = db;
@@ -67,23 +66,15 @@ namespace Igry.ViewModels
             }
         }
 
-
-        private async void GetRandomGame()
-        {
-            CurrentGame = await apiService.GetRandomAsync();
-            AdjustCurrentGameGenre();
-            AdjustCurrentGamePlatforms();
-        }
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
 
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public async void OnNavigatedTo(INavigationParameters parameters)
         {
-            var game = parameters.GetValue<Game>("Game");
-            CurrentGame = game;
+            CurrentGame = parameters.GetValue<Game>("Game");
+            CurrentGameDetails = await gamesByIdApiService.GetGameDetailsAsync(CurrentGame.Id);
             AdjustCurrentGameGenre();
             AdjustCurrentGamePlatforms();
             AdjustFavoriteImagePath();

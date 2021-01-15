@@ -2,49 +2,59 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.Views.GameDetailPage"
-             Title="Game Detail">
+             Title="Game Detail"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *, 3*"
-               Margin="20, 0, 20, 0">
-            <Label Text="{Binding CurrentGame.Name}"  Margin="0, 20, 0, 0" Grid.Row="0" Grid.Column="1"/>
-            <Image Source="{Binding CurrentGame.BackgroundImage}"  Margin="0, 20, 0, 0" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFill"/>
+        <Grid RowDefinitions="*, 3*, 6*" Padding="20, 20, 20, 20">
+            <Label Text="{Binding CurrentGame.Name}" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="End" />
+            <ImageButton Source="{Binding FavoriteImagePath}" Command="{Binding FavoriteCommand}" 
+                         Grid.Row="0" HorizontalOptions="End"  BackgroundColor="White"/>
 
-            <StackLayout  Grid.Row="1" Grid.Column="1">
-                <Label Text="{Binding CurrentGameGenres}"/>
-            
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Release Date: "/>
-                            <Span Text="{Binding CurrentGame.Released}" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </StackLayout>
+            <Image Source="{Binding CurrentGame.BackgroundImage}" Grid.Row="1" Grid.Column="0" Aspect="AspectFill"/>
 
+            <ScrollView Grid.Row="2" Margin="0, 30, 0, 0">
+                <StackLayout Spacing="20">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Rating: "/>
+                                <Span Text="{Binding CurrentGame.Rating}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-            <StackLayout Grid.Row="2" Grid.Column="1">
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Rating: "/>
-                            <Span Text="{Binding CurrentGame.Rating}" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                    <Label Text="{Binding CurrentGameGenres}"/>
 
-                <Label >
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Available in the following platforms: "/>
-                            <Span Text="{Binding CurrentGamePlatforms}" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </StackLayout>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Release Date: "/>
+                                <Span Text="{Binding CurrentGame.Released}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-            <ImageButton Source="{Binding FavoriteImagePath}" Command="{Binding FavoriteCommand}"
-                         Grid.Row="3" Grid.Column="0"  VerticalOptions="End"/>
+                    <Label >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Available in the following platforms: "/>
+                                <Span Text="{Binding CurrentGamePlatforms}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Last updated: " />
+                                <Span Text="{Binding CurrentGame.Updated}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Text="{Binding CurrentGameDetails.DescriptionRaw}"/>
+                </StackLayout>
+            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

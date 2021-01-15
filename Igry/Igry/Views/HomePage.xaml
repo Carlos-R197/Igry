@@ -15,7 +15,7 @@
     
     <ContentPage.Content>
         <Grid RowDefinitions="3*, *, 3*, *, 3*" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
-            <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Grid.Row="0" 
+            <Image Source="{Binding GameOfTheWeek.BackgroundImage}" Grid.Row="0" Margin="10, 10, 10, 0"
                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
             <Label Text="Game of the month" Grid.Row="0" 
                    VerticalOptions="Center" HorizontalOptions="Center"/>

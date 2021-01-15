@@ -10,6 +10,18 @@ namespace Igry.Services
 {
     public class GamesByIdApiService
     {
+        public async Task<GameDetails> GetGameDetailsAsync(int gameId)
+        {
+            GameDetails game = null;
+            var client = new HttpClient();
+            string query = $"https://api.rawg.io/api/games/{gameId}?key=9b88a4289b784c19b41aff2c40764c6a";
+            HttpResponseMessage response = await client.GetAsync(query);
+            if (response.IsSuccessStatusCode)
+                game = JsonConvert.DeserializeObject<GameDetails>(await response.Content.ReadAsStringAsync());
+
+            return game;
+        }
+
         public async Task<IList<Game>> GetGamesAsync(List<int> gamesIds)
         {
             IList<Game> games = null;
