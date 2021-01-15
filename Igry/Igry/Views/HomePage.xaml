@@ -21,7 +21,8 @@
             <Label Text="{Binding GameOfTheWeek.Name}" Style="{StaticResource TitleLabel}" Grid.Row="1" TextColor="White"
                         HorizontalOptions="Center" VerticalOptions="End"/>
 
-            <Label Text="Your Favorite Games" Grid.Row="2" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Label Text="Your Favorite Games" Grid.Row="2" HorizontalOptions="Start" 
+                   VerticalOptions="Center" Style="{StaticResource RegularLabel}"/>
             <BoxView HeightRequest="1" Grid.Row="2" VerticalOptions="End" BackgroundColor="#212121"/>
             <CollectionView ItemsSource="{Binding FavoriteGames}" SelectedItem="{Binding SelectedFavoriteGame}" SelectionChangedCommand="{Binding SelectedGameCommand}" 
                             SelectionMode="Single" Grid.Row="3">
@@ -44,7 +45,8 @@
 
             </CollectionView>
 
-            <Label Text="Recommended Games" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Label Text="Recommended Games" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Center" 
+                   Style="{StaticResource RegularLabel}"/>
             <BoxView HeightRequest="1" Grid.Row="4" VerticalOptions="End" BackgroundColor="#212121"/>
             <CollectionView ItemsSource="{Binding RecommendedGames}" SelectedItem="{Binding SelectedRecommendedGame}" SelectionChangedCommand="{Binding RecommendedGameSelectedCommand}" 
                             SelectionMode="Single" Grid.Row="5" BackgroundColor="#e1f5fe">

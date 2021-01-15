@@ -10,8 +10,6 @@ namespace Igry.Services
 {
     public class SearchGamesApiService
     {
-        private const int amountResults = 10;
-
         public async Task<IList<Game>> SearchAsync(string userInput)
         {
             IList<Game> games = null;

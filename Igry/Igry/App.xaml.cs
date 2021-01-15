@@ -56,6 +56,7 @@ namespace Igry
             containerRegistry.RegisterForNavigation<CatalogPage, CatalogViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomeViewModel>();
             containerRegistry.RegisterForNavigation<HomeTabbedPage>();
+            containerRegistry.RegisterForNavigation<SearchPage, SearchViewModel>();
         }
 
         protected override void OnStart()

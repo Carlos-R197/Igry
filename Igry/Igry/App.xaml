@@ -16,7 +16,7 @@
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="FontFamily" Value="Gotham" />
                 <Setter Property="FontSize"  Value="Small"/>
             </Style>
@@ -40,7 +40,7 @@
             <Style x:Key="RegularLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"></Setter>
                 <Setter Property="FontFamily" Value="Gotham"/>
-                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontSize" Value="Small" />
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

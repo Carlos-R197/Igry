@@ -12,9 +12,15 @@ namespace Igry.ViewModels
 {
     class SearchViewModel : BaseViewModel
     {
-        public SearchViewModel(INavigationService navigationService, IPageDialogService dialogService)
-            : base(navigationService, dialogService){}
-        SearchGamesApiService apiService = new SearchGamesApiService();
+        private readonly SearchGamesApiService apiService;
+
+        public SearchViewModel(INavigationService navigationService, IPageDialogService dialogService, SearchGamesApiService service)
+            : base(navigationService, dialogService)
+        {
+
+            apiService = service;
+        }
+
         public IList<Game> GameResults { get; set; }
         public Game SelectedGame { get; set; }
         public string Text { get; set; }

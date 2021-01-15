@@ -13,11 +13,13 @@
   <ItemGroup>
     <None Remove="Resources\Fonts\Gotham-Font\Gotham-Black.otf" />
     <None Remove="Resources\Fonts\Gotham-Font\GothamBold.ttf" />
+    <None Remove="Resources\Fonts\Gotham-Font\GothamLight.ttf" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\Gotham-Font\Gotham-Black.otf" />
     <EmbeddedResource Include="Resources\Fonts\Gotham-Font\GothamBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Gotham-Font\GothamLight.ttf" />
   </ItemGroup>
 
   <ItemGroup>

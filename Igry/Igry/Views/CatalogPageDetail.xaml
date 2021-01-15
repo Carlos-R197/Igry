@@ -4,7 +4,8 @@
              x:Class="Igry.Views.CatalogPageDetail"
              Title="Catalog" BackgroundColor="Black">
     <Grid ColumnDefinitions="*,*,*" RowDefinitions="20*,*" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
-        <CollectionView x:Name="catalog" ItemsSource="{Binding GameLists}" SelectionMode="Single" Grid.Row="0" Grid.ColumnSpan="4" SelectedItem="{Binding SelectedGame}" SelectionChangedCommand="{Binding GameDetailPageCommand}">
+        <CollectionView x:Name="catalog" ItemsSource="{Binding GameLists}" SelectionMode="Single" Grid.Row="0" 
+                        Grid.ColumnSpan="4" SelectedItem="{Binding SelectedGame}" SelectionChangedCommand="{Binding GameDetailPageCommand}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="20" Span="2"/>
             </CollectionView.ItemsLayout>

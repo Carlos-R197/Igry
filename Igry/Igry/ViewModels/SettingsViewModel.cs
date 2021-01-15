@@ -16,8 +16,6 @@ namespace Igry.ViewModels
 {
     class SettingsViewModel : BaseViewModel
     {
-        public ICommand GameDetailCommand => new Command(GameDetail);
-        public ICommand RandomPlatformCommand => new Command(RandomPlatform);
         private readonly OpenUrlService openUrlService;
 
         private ObservableCollection<Game> favoriteGames;
@@ -40,7 +38,7 @@ namespace Igry.ViewModels
         private async void LogOut()
         {
             bool userChoice = await dialogService.DisplayAlertAsync(Titles.Important,
-                SuccessMessages.LogOut, AlertButtonMessages.Accept, AlertButtonMessages.Cancel);
+                SuccessMessages.LogOut, AlertButtonMessages.Yes, AlertButtonMessages.Cancel);
 
             if (userChoice == true)
             {
