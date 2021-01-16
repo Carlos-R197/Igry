@@ -49,7 +49,7 @@
                    Style="{StaticResource RegularLabel}"/>
             <BoxView HeightRequest="1" Grid.Row="4" VerticalOptions="End" BackgroundColor="#212121"/>
             <CollectionView ItemsSource="{Binding RecommendedGames}" SelectedItem="{Binding SelectedRecommendedGame}" SelectionChangedCommand="{Binding RecommendedGameSelectedCommand}" 
-                            SelectionMode="Single" Grid.Row="5" BackgroundColor="#e1f5fe">
+                            SelectionMode="Single" Grid.Row="5" BackgroundColor="White">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="5"></GridItemsLayout>
                 </CollectionView.ItemsLayout>

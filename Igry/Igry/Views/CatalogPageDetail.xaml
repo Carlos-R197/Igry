@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Igry.Views.CatalogPageDetail"
              Title="Catalog" BackgroundColor="Black">
-    <Grid ColumnDefinitions="*,*,*" RowDefinitions="20*,*" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="25*,*" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
         <CollectionView x:Name="catalog" ItemsSource="{Binding GameLists}" SelectionMode="Single" Grid.Row="0" 
                         Grid.ColumnSpan="4" SelectedItem="{Binding SelectedGame}" SelectionChangedCommand="{Binding GameDetailPageCommand}">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="20" Span="2"/>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="0" Span="2"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid RowDefinitions="*,*" BackgroundColor="Black" Padding="10">
+                    <Grid RowDefinitions="*" BackgroundColor="Black">
                         <Image Aspect="AspectFill" Source="{Binding BackgroundImage}" Margin="10" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <Label Text="{Binding Name}" TextColor="White" Grid.Row="1"/>
                     </Grid>
