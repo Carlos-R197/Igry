@@ -8,19 +8,19 @@ to date with rich metadata and lots of player activity data.
 [RAWG API]: https://api.rawg.io/docs/
 
 <p align="center">
-	<img width="300" height:"700" src="images/login.png" title="sample"/>
-	<img width="300" height:"700" src="images/register.png" title="sample"/>
+	<img width="300" height:"700" src="images/login.jpeg" title="sample"/>
+	<img width="300" height:"700" src="images/register.jpeg" title="sample"/>
 </p>
 <p align="center">
-	<img width="300" height:"700" src="images/home.png" title="sample"/>
-	<img width="300" height:"700" src="images/catalog.png" title="sample"/>
+	<img width="300" height:"700" src="images/home.jpeg" title="sample"/>
+	<img width="300" height:"700" src="images/catalog.jpeg" title="sample"/>
 </p>
 <p align="center">
-	<img width="300" height:"700" src="images/game.png" title="sample"/>
-	<img width="300" height:"700" src="images/search.png" title="sample"/>
+	<img width="300" height:"700" src="images/game.jpeg" title="sample"/>
+	<img width="300" height:"700" src="images/search.jpeg" title="sample"/>
 </p>
 <p align="center">
-	<img width="300" height:"700" src="images/more.png" title="sample"/>
+	<img width="300" height:"700" src="images/more.jpeg" title="sample"/>
 </p>
 
 ## Project Resources 
