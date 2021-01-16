@@ -6,34 +6,41 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
             <!-- Colors-->
-            <Color x:Key="PrimaryColor">#039be5</Color>
-            <Color x:Key="LightPrimaryColor">#63ccff</Color>
-            <Color x:Key="DarkPrimaryColor">#006db3</Color>
-
-            <Color x:Key="SecondaryColor">#a86510</Color>
-            <Color x:Key="LightSecondaryColor">#de9341</Color>
-            <Color x:Key="DarkSecondaryColor">#743a00</Color>
-
-            <Color x:Key="TextColor">#006db3</Color>
+            <Color x:Key="PrimaryColor">#ab47bc</Color>
+            <Color x:Key="LightPrimaryColor">#df78ef</Color>
+            <Color x:Key="DarkPrimaryColor">#790e8b</Color>
+            
             <!--Implicit Styles -->
             <Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource DarkPrimaryColor}"/>
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="#FFFFFF"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontFamily" Value="Gotham" />
+                <Setter Property="FontSize"  Value="Small"/>
             </Style>
 
             <Style TargetType="Entry">
                 <Setter Property="IsTextPredictionEnabled" Value="False"/>
-            </Style>
-            <!-- Explicit Styles -->
-            <Style x:Key="WhiteText" TargetType="Label">
-                <Setter Property="TextColor" Value="#FFFFFF"></Setter>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontFamily" Value="Gotham"/>
             </Style>
 
-            <Style x:Key="BlueText" TargetType="Label">
-                <Setter Property="TextColor" Value="#006db3"></Setter>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Gotham"/>
+            </Style>
+            <!-- Explicit Styles -->
+            <Style x:Key="TitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkPrimaryColor}"></Setter>
+                <Setter Property="FontFamily" Value="Gotham" />
+                <Setter Property="FontSize" Value="Title"/>
+            </Style>
+
+            <Style x:Key="RegularLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"></Setter>
+                <Setter Property="FontFamily" Value="Gotham"/>
+                <Setter Property="FontSize" Value="Small" />
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

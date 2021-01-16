@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Igry.Models
 {
-    public class Genre
+    public class Genre : BaseModel
     {
 
         [JsonProperty("id")]

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Newtonsoft.Json;
-using Igry.Objects;
 
 namespace Igry.Models
 {
-    public class Game : BaseObject
+    public class Game : BaseModel
     {
 
         [JsonProperty("id")]

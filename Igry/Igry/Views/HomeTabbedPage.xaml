@@ -6,11 +6,11 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             Title="Igry" 
-            android:TabbedPage.IsSwipePagingEnabled="False">
+            android:TabbedPage.IsSwipePagingEnabled="False" BarBackgroundColor="{StaticResource Key=DarkPrimaryColor}">
     <TabbedPage.Children>
         <local:HomePage/>
         <local:CatalogPage/>
-        <local:ProfilePage/>
+        <local:SearchPage/>
         <local:SettingsPage/>
     </TabbedPage.Children>
 </TabbedPage>

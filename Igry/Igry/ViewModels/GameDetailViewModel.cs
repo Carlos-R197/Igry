@@ -3,33 +3,87 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Igry.Models;
 using Igry.Services;
+using System.Collections.ObjectModel;
+using Igry.Constants;
+using Prism.Services;
 
 namespace Igry.ViewModels
 {
     public class GameDetailViewModel : BaseViewModel, INavigatedAware
     {
-        IGameRandomizerApiService apiService;
+        private const string isFavoriteImage = "FilledStar.png";
+        private const string isNotFavoriteImage = "EmptyStar.png";
+
+        private readonly GamesByIdApiService gamesByIdApiService;
+        private readonly DelegateCommand favoriteCommand;
+        private readonly Database database;
+        private readonly User currentUser;
+        private readonly ObservableCollection<Game> favoriteGames;
 
         public Game CurrentGame { get; set; }
+        public GameDetails CurrentGameDetails { get; set; }
         public string CurrentGameGenres { get; set; }
         public string CurrentGamePlatforms { get; set; }
+        public string FavoriteImagePath { get; set; }
+        public User CurrentUser => currentUser;
 
-        public GameDetailViewModel(IGameRandomizerApiService apiService)
+        public DelegateCommand FavoriteCommand => favoriteCommand;
+
+        public GameDetailViewModel(INavigationService navService, IPageDialogService dialogService,
+            GamesByIdApiService gamesByIdApiService, Database db, 
+            User user, ObservableCollection<Game> favoriteGames) : base(navService, dialogService)
         {
-            this.apiService = apiService;
+            this.gamesByIdApiService = gamesByIdApiService;
+            favoriteCommand = new DelegateCommand(ManageGameFavoriteStatus);
+            database = db;
+            currentUser = user;
+            this.favoriteGames = favoriteGames;
         }
 
-
-        async void GetRandomGame()
+        private async void ManageGameFavoriteStatus()
         {
-            CurrentGame = await apiService.GetRandomAsync();
+            var favorite = currentUser.Favorites.FirstOrDefault(t => t.GameId == CurrentGame.Id);
+            if (favorite != null)
+            {
+                currentUser.Favorites.Remove(favorite);
+                favoriteGames.Remove(favoriteGames.First(t => t.Id == favorite.GameId));
+                await database.RemoveFavoriteAsync(favorite);
+                FavoriteImagePath = isNotFavoriteImage;
+            }
+            else
+            {
+                var newFavorite = new Favorite(currentUser.Email, CurrentGame.Id);
+                currentUser.Favorites.Add(newFavorite);
+
+                //Add game to favoriteGames list
+                var gameId = new List<int>();
+                gameId.Add(newFavorite.GameId);
+                var games = await gamesByIdApiService.GetGamesAsync(gameId);
+                favoriteGames.Add(games[0]);
+
+                await database.AddFavoriteAsync(newFavorite);
+                FavoriteImagePath = isFavoriteImage;
+            }
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+
+        }
+
+        public async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            CurrentGame = parameters.GetValue<Game>("Game");
+            CurrentGameDetails = await gamesByIdApiService.GetGameDetailsAsync(CurrentGame.Id);
             AdjustCurrentGameGenre();
             AdjustCurrentGamePlatforms();
+            AdjustFavoriteImagePath();
         }
 
-        void AdjustCurrentGameGenre()
+        private void AdjustCurrentGameGenre()
         {
             if (CurrentGame.Genres.Count > 0)
             {
@@ -40,7 +94,7 @@ namespace Igry.ViewModels
             }
         }
 
-        void AdjustCurrentGamePlatforms()
+        private void AdjustCurrentGamePlatforms()
         {
             CurrentGamePlatforms = "";
             if (CurrentGame.Platforms.Count > 0)
@@ -50,18 +104,16 @@ namespace Igry.ViewModels
                     CurrentGamePlatforms += ", " + CurrentGame.Platforms[i].PlatformData.Name;
             }
             else
-                CurrentGamePlatforms = "No platform data available for this game";
+                CurrentGamePlatforms = ErrorMessages.NoDataForGame;
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {}
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        private void AdjustFavoriteImagePath()
         {
-            var game = parameters.GetValue<Game>("Game");
-            CurrentGame = game;
-            AdjustCurrentGameGenre();
-            AdjustCurrentGamePlatforms();
+            if (currentUser.Favorites.Any(t => t.GameId == CurrentGame.Id))
+                FavoriteImagePath = isFavoriteImage;
+            else
+                FavoriteImagePath = isNotFavoriteImage;
         }
     }
 }

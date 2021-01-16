@@ -11,13 +11,29 @@ namespace Igry.Services
 {
     class GameCatalogApiService : IGameCatalogApiService
     {
-        public async Task<IList<Game>> GetPageAsync(int page)
+        public IList<Genre> loadedGenres = null;
+        public string Append;
+        public async Task<IList<Game>> GetPageAsync(int page, IList<Genre> genres)
         {
-            IList<Game> game = null;
+            IList<Game> game = new List<Game>();
             var client = new HttpClient();
             int pageSize = 20;
-            
-            string query = $"https://api.rawg.io/api/games?genres=4&key=9b88a4289b784c19b41aff2c40764c6a&page={page}&page_size={pageSize}";
+            string query = $"https://api.rawg.io/api/games?key=9b88a4289b784c19b41aff2c40764c6a&page={page}&page_size={pageSize}";
+
+            if (genres != null)
+            {
+                loadedGenres = genres;
+                string Append = null;
+                for (int i = 0; i < loadedGenres.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        Append += "&genres=" + loadedGenres[i].Id;
+                    }
+                    else Append += "," + loadedGenres[i].Id;
+                }
+                query += Append;
+            }
             var response = await client.GetAsync(query);
 
             if (response.IsSuccessStatusCode)

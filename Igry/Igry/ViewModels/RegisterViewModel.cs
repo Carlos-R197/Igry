@@ -5,16 +5,14 @@ using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using Igry.Models;
-using Igry.Objects;
 using System.Threading.Tasks;
+using Igry.Constants;
 
 namespace Igry.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
         private readonly Database database;
-        private readonly INavigationService navigationService;
-        private readonly IPageDialogService dialogService;
         private readonly DelegateCommand registerCommand;
 
         public Email Email { get; set; } = new Email();
@@ -25,10 +23,9 @@ namespace Igry.ViewModels
         public DelegateCommand RegisterCommand => registerCommand;
 
         public RegisterViewModel(Database database, INavigationService navigationService, IPageDialogService dialogService)
+            : base(navigationService, dialogService)
         {
             this.database = database;
-            this.navigationService = navigationService;
-            this.dialogService = dialogService;
             registerCommand = new DelegateCommand(Register);
         }
 
@@ -37,12 +34,12 @@ namespace Igry.ViewModels
             if (await EntriesMeetRequirementsAsync())
             {
                 if (await database.IsEmailTaken(Email.Value))
-                    await dialogService.DisplayAlertAsync("Error", "The email is alredy taken by another user", "OK");
+                    await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.ExistingEmail, AlertButtonMessages.Dismiss);
                 else
                 {
                     var user = new User(Email.Value, Name, Password.Value);
                     var savingUser = database.SaveUserAsync(user);
-                    await dialogService.DisplayAlertAsync("Registration successful", "Your account has been created successfully", "OK");
+                    await dialogService.DisplayAlertAsync(Titles.RegistrationCompleted, SuccessMessages.RegistrationCompleted, AlertButtonMessages.Dismiss);
                     await savingUser;
                     await navigationService.GoBackAsync();
                 }
@@ -54,13 +51,13 @@ namespace Igry.ViewModels
             bool EntriesMeetRequirements = false;
 
             if (AreEntriesEmpty())
-                await dialogService.DisplayAlertAsync("Error", "All the entries must be filled", "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.EmptyEntries, AlertButtonMessages.Dismiss);
             else if (Password.Value != ConfirmPassword)
-                await dialogService.DisplayAlertAsync("Error", "Password cnad confirm password must be the same", "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.PasswordsDontMatch, AlertButtonMessages.Dismiss);
             else if (!Password.IsValid())
-                await dialogService.DisplayAlertAsync("Error", "Password isn't valid", "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidPassword, AlertButtonMessages.Dismiss);
             else if (!Email.IsValid())
-                await dialogService.DisplayAlertAsync("Error", "Email isn't valid", "OK");
+                await dialogService.DisplayAlertAsync(Titles.Error, ErrorMessages.InvalidEmail, AlertButtonMessages.Dismiss);
             else
                 EntriesMeetRequirements = true;
 

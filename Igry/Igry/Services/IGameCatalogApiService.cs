@@ -9,6 +9,6 @@ namespace Igry.Services
 {
     interface IGameCatalogApiService
     {
-        Task<IList<Game>> GetPageAsync(int page);
+        Task<IList<Game>> GetPageAsync(int page, IList<Genre> genres);
     }
 }
